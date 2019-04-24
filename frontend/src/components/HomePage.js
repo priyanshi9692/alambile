@@ -103,8 +103,8 @@ class HomePage extends Component {
                 <hr/>
                </div>
 
-        <div className="row"> 
-                <Route exact path="/" render={() => (
+        <div className="row justify-content-md-center"> 
+                <Route exact path="/SignIn" render={() => (
                     <div className="row">
                         <div className="col-md-6">
                             
@@ -132,19 +132,19 @@ class HomePage extends Component {
                      </div>   
                 )}/>
 
-            <Route exact path="/SignUp" render={() => (
+            <Route exact path="/" render={() => (
                    <div className ="row">
-                        <div className="col-md-6">
+                        <div className="col-md-6 put-bg">
                             
                             <img src = "https://dropboxmainblog.files.wordpress.com/2015/09/team-feature.png?w=650&h=325"/>
 
   
                         </div>
                        
-                        <div className="col-md-6">
+                        <div className="col-md-6 box-position">
                                 <div className="col-md-10"> 
                         
-                                     <div>
+                                     <div className="box-position">
                                         <SignUp handleRegister={this.handleRegister}/>
                                     
                                     </div>

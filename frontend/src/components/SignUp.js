@@ -27,18 +27,33 @@ class SignUp extends Component {
     render() {
         return (
             
-           <div className="row justify-content-md-center">
+           <div className="row justify-content-md-center signup-bg">
                 <div>
                     <form>
                         <div className="form-group">
-                            <h1>SignUp</h1>
+                            <h3>Start collecting today!</h3>
                         </div>
                         <div className="form-group">
                             <input
                                 className="form-control"
                                 type="text"
                                 label="name"
-                                placeholder="Enter Name"
+                                placeholder="First Name"
+                                value={this.state.name}
+                                onChange={(event) => {
+                                    this.setState({
+                                        name: event.target.value
+                                    });
+                                }}
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <input
+                                className="form-control"
+                                type="text"
+                                label="name"
+                                placeholder="Last Name"
                                 value={this.state.name}
                                 onChange={(event) => {
                                     this.setState({

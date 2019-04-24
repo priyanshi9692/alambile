@@ -145,3 +145,24 @@
     padding-left:50px;
     transition: padding-left 0.5s;
 }
+
+.signup-bg
+{
+    background: #FAF9F7;
+    margin-left: 5%;
+    padding: 40px;
+}
+
+.box-position
+{
+    top: 25px;
+}
+
+.put-bg
+{
+  z-index: -1;
+}
+
+.put-bg img{
+  width: 200%;
+}
