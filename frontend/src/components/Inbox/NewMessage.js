@@ -1,25 +1,14 @@
-import React, {Component} from 'react';
-import axios from 'axios';
-import cookie from 'react-cookies';
-import {Redirect} from 'react-router';
-import "../App.css";
+import React, { Component } from 'react'
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { signin } from "../actions/userActions";
+import { newMsg } from "../../actions/msgActions";
+import PropTypes from 'prop-types';
 
+class NewMessage extends Component {
 
-
-class Signin extends Component{
-
-    constructor(){
-        //Call the constrictor of Super class i.e The Component
-        super();
-        this.onSignup = this.onSignup.bind(this);
-    }
     componentWillMount(){
         this.setState({
-            rcode : 0,
-            user_type: cookie.load('cookie')
+            rcode : 0
         })
     }
 
@@ -38,44 +27,40 @@ class Signin extends Component{
           </div>
         );
       }
-    
       renderField1(field) {
         const { meta: { touched, error } } = field;
         const className = `form-group ${touched && error ? "has-danger" : ""}`;
     
         return (
           <div className={className}>
-            <label>{field.label}</label>
-            <input className="form-control" type="password" {...field.input} />
-            <div className="text-help">
+          <label>{field.label}</label>
+          <textarea  name="message_text" placeholder="Type Message Here"
+          className="form-control" {...field.input}/>
+          <div className="text-help">
               {touched ? error : ""}
             </div>
-          </div>
+      </div>
         );
       }
 
-
-      onSubmit(values) {
-        console.log("values: " + JSON.stringify(values));
-        this.props.signin(values, () => {
+    onSubmit(values) {
+        console.log("values: " + values);
+        this.props.newMsg(values, () => {
           console.log("i am here before push");
-          console.log("rescode onsumbit11: " + this.props.rescode)
           console.log("rescode onsumbit: " + JSON.stringify(this.props.rescode))
           let stat_code = this.props.rescode
           let s_code = Object.keys(stat_code).map(function(key){ return stat_code[key] })
-          if(s_code==200) {
-            console.log("Response code 200!");
-            this.setState({
-                rcode : 200
-            })}
-            else if(s_code==201){
+          if(s_code==201) {
+            this.props.history.push("/inbox");
+          }
+            else if(s_code==202){
             console.log("Response code 202!");
             this.setState({
-                rcode : 201
+                rcode : 202
             })}
-            else if(s_code==203){
+            else if(s_code==500){
               this.setState({
-                  rcode : 203
+                  rcode : 500
               }) 
           }
           
@@ -84,29 +69,30 @@ class Signin extends Component{
         });
       }
 
-      onSignup(){
-        this.props.history.push('/signup')
-      }
-
     
-    render(){
 
+    render () {
         const { handleSubmit } = this.props;
 
         console.log("rescode: " + JSON.stringify(this.props.rescode))
-        
+        /*
+        let stat_co = JSON.stringify(this.props.rescode)
+        let stat_code = this.props.rescode
+        console.log("stat_code.status: " + Object.keys(stat_code).map(function(key){ return stat_code[key] }))
+        let s_code = Object.keys(stat_code).map(function(key){ return stat_code[key] })
         let det = ''
-        if(this.state.rcode==200){
-          console.log(this.props.history)
-        this.props.history.push("/");
+        if(s_code==201) {
+          this.props.history.push("/signin");
         }
-       else if(this.state.rcode==201)
-           det=  <div style={{"color":"red"}}>Incorrect password!</div>
-           else if(this.state.rcode==203)
-           det=  <div style={{"color":"red"}}> User is not registered! </div>
-  
-        
-        return(
+        */
+        let det = ''
+       if(this.state.rcode==202)
+          det=  <div style={{"color":"red"}}>User already registered!</div>
+          else if(this.state.rcode==500)
+          det=  <div> Error! </div>
+    
+
+        return (
             <div class="content-wrapper">
             <section className="content-header">
             <div className="container">
@@ -114,24 +100,31 @@ class Signin extends Component{
                     <div className="col-md-6 mt-5 mx-auto">
                    
                         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                        <h2 className="h3 mb-3 font-weight-normal">Sign In</h2>
+                        <h1 className="h4 mb-3 font-weight-normal">Compose Message</h1>
                         {det}
+       <Field
+        name="to_email"
+        label="To"
+        component={this.renderField}
+        placeholder="Recepient Id"
+      />
         <Field
-          name="user_email"
-          label="Email"
+          name="subject"
+          label="Subject"
           component={this.renderField}
+          placeholder="Subject for Message"
         />
 
         <Field
-          name="user_password"
-          label="Password"
+          name="message"
+          label="Message"
           component={this.renderField1}
-          type="password"
+          type="textarea"
         />
-        <button id="btn_space" type="submit" className="btn btn-primary">Sign In</button>
-        <button type="submit" onClick = {this.onSignup} class="btn btn-primary">Sign Up </button>  
+     
+        <button type="submit" className="btn btn-primary">Send</button>
+    
       </form>
-       
                     </div>
                 </div>
             </div>
@@ -145,13 +138,16 @@ function validate(values) {
     const errors = {};
   
     // Validate the inputs from 'values'
-    if (!values.user_email) {
-      errors.user_email = "Enter you email address";
+    if (!values.to_email) {
+      errors.to_email = "Enter Recepient ID";
     }
-    if (!values.user_password) {
-      errors.user_password = "Enter password";
+    if (!values.subject) {
+      errors.subject = "Enter Subject";
     }
-
+    if (!values.message) {
+      errors.message = "Enter Message";
+    }
+  
     // If errors is empty, the form is fine to submit
     // If errors has *any* properties, redux form assumes form is invalid
     return errors;
@@ -160,11 +156,12 @@ function validate(values) {
 
   const mapStateToProps = state => (
     {
-  rescode: state.signin_status
+  rescode: state.newmsg_status
 });
 
 
 export default reduxForm({
     validate,
-    form: "SigninForm"
-  })(connect(mapStateToProps, { signin })(Signin));
+    form: "NewMessageForm"
+  })(connect(mapStateToProps, { newMsg })(NewMessage));
+

@@ -1,20 +1,31 @@
-import React, {Component} from 'react';
-import './App.css';
+// App.js
+
+import React, { Component } from 'react';
+import Main from './components/Main';
 import {BrowserRouter} from 'react-router-dom';
-import Main from "./components/HomePage";
+import './App.css';
+import { Provider } from 'react-redux';
+import store from './store';
 
 
-    class App extends Component {
-        render() {
-            return (
-                <div className="App">
-                 
-                    <BrowserRouter>
-                      <Main/>
-                    </BrowserRouter>
-                </div>
-            );
-        }
-    }
+class App extends Component {
 
-    export default App;
+  render() {
+    return (
+      <Provider store={store}>
+      <BrowserRouter>
+      
+        {/* App Child Component Main*/}
+        <Main />
+     
+    </BrowserRouter>
+    </Provider>
+    );
+  }
+  
+}
+
+export default App;
+
+
+
