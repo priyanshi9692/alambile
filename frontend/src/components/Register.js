@@ -1,0 +1,167 @@
+import React, { Component } from 'react';
+import { updateProfile } from "../actions/userActions";
+import {Redirect} from 'react-router';
+import cookie from 'react-cookies';
+import Button from '@material-ui/core/Button';
+import { Field, reduxForm, } from "redux-form";
+import { connect } from "react-redux";
+import axios from 'axios';
+
+
+class Register extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      user_photo: null
+    }
+
+//this.onChange = this.onChange.bind(this)
+    this.onChange1 = this.onChange1.bind(this)
+  }
+   /*  
+    onChange (e) {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+    */
+  
+    onChange1 (e) {
+        this.setState({user_photo: e.target.files[0]});
+    }
+
+    renderField(field) {
+        const { meta: { touched, error } } = field;
+        const className = `form-group ${touched && error ? "has-danger" : ""}`;
+    
+        return (
+          <div className={className}>
+            <label>{field.label}</label>
+            <input className="form-control" type="text" {...field.input} />
+            <div className="text-help">
+              {touched ? error : ""}
+            </div>
+          </div>
+        );
+      }
+      
+    onSubmit (values) {
+
+    this.props.updateProfile(values,() => {
+        console.log("i am here before push");
+       // console.log()
+        this.props.history.push('/dispProfile')
+      });
+      }
+          
+
+    render () {
+        const { handleSubmit } = this.props;
+
+        let redirectVar = null;
+        if(!cookie.load('cookie')){
+            redirectVar = <Redirect to= "/signin"/>
+        }
+        return ( 
+            <div className="content-wrapper">
+
+            <section className="content-header">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 mt-5 mx-auto">
+                    <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                            <h1 className="h3 mb-3 font-weight-normal">Register Form</h1>
+         <Field
+        name="user_name"
+        label="Name"
+        component={this.renderField}
+      />
+        <Field
+          name="user_phone"
+          label="Phone"
+          component={this.renderField}
+        />
+
+        <Field
+          name="user_about_me"
+          label="About Yourself"
+          component={this.renderField}
+        />
+        <Field
+          class="test"
+          name="user_q1"
+          label="Why do you want to volunteer?"
+          component={(props) => {
+            return (
+              <input type="textarea" />
+            )
+          }}
+        />
+                   
+ <div style={{"padding":"10px"}}>
+ <button type="submit" className="btn btn-primary">Submit</button>    
+</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </section>
+            </div>
+        )
+    }
+}
+
+function validate(values) {
+
+    const errors = {};
+  
+    // Validate the inputs from 'values'
+    if (!values.user_name) {
+      errors.user_name = "Enter you Name";
+    }
+    if (!values.user_phone) {
+      errors.user_phone = "Enter Phone";
+    }
+    if (!values.user_about_me) {
+      errors.user_about_me = "Enter About Yourself";
+    }
+    if (!values.user_city) {
+        errors.user_city = "Enter City";
+      }
+      if (!values.user_city) {
+        errors.user_city = "Enter Country";
+      }
+      if (!values.user_city) {
+        errors.user_city = "Enter Company";
+      }
+      if (!values.user_city) {
+        errors.user_city = "Enter School";
+      }
+      if (!values.user_city) {
+        errors.user_city = "Enter Hometown";
+      }
+      if (!values.user_city) {
+        errors.user_city = "Enter Language";
+      }
+      if (!values.user_city) {
+        errors.user_city = "Enter Gender";
+      }
+   //   if (!values.user_photo) {
+   //     errors.user_photo = "Uploda Photo";
+   //   }
+    // If errors is empty, the form is fine to submit
+    // If errors has *any* properties, redux form assumes form is invalid
+    return errors;
+  }
+
+
+  const mapStateToProps = state => (
+    {
+  rescode: state.status
+});
+
+
+export default reduxForm({
+    validate,
+    form: "ProfileUpdateForm"
+  })(connect(mapStateToProps, { updateProfile })(Register));
+

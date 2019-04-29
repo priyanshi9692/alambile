@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import '../App.css';
-import * as API from '../api/API';
-import ImageGridList from "../ImageGridList";
-import TextField from 'material-ui/TextField';
-import Typography from 'material-ui/Typography';
+import '../../App.css';
+import * as API from '../../api/API';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import {createBrowserHistory} from 'history' ;
 import { Route, withRouter } from 'react-router-dom';
