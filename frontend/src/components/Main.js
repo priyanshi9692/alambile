@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route,Switch} from 'react-router-dom';
-import Signin from './Signin';
-import Signup from './Signup';
+import Signin from './SignIn';
+import Signup from './SignUp';
 import Home from './Home';
 import DispProfile from './DispProfile';
 import UpdateProfile from './UpdateProfile';
