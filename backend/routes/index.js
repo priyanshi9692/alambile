@@ -52,7 +52,7 @@ module.exports = {
     restaurantInfo.address = req.body.address;
     restaurantInfo.city = req.body.city;
     restaurantInfo.zipcode = req.body.zipcode;
-    restaurantInfo.role = req.body.role;
+    
     // restaurantInfo.membership = req.body.pay;
     console.log(JSON.stringify(restaurantInfo));
 
@@ -104,8 +104,8 @@ module.exports = {
     shelterHomeInfo.email = req.body.email;
     shelterHomeInfo.address = req.body.address;
     shelterHomeInfo.city = req.body.city;
-    shelterHomeInfo.Zipcode = req.body.Zipcode;
-    shelterHomeInfo.role = req.body.role;
+    shelterHomeInfo.zipcode = req.body.zipcode;
+   
     console.log(JSON.stringify(shelterHomeInfo));
 
     MongoClient.connect(url, function (err, db) {
@@ -143,7 +143,7 @@ module.exports = {
     volunteersInfo.email = req.body.email;
     volunteersInfo.address = req.body.address;
     volunteersInfo.city = req.body.city;
-    volunteersInfo.role = req.body.role;
+    
     console.log(JSON.stringify(volunteersInfo));
 
     MongoClient.connect(url, function (err, db) {
