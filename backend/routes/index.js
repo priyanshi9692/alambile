@@ -40,6 +40,20 @@ module.exports = {
     res.render('payment.ejs');
   },
 
+  getLogin: (req, res) => {
+    console.log(req.params.id);
+    console.log(req.params.password);
+    MongoClient.connect(url, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("Users");
+      var myobj = restaurantInfo;
+      dbo.collection("restaurants").findOne(myobj, function (err, res) {
+          //if(res.)
+      });
+    });
+    res.render('payment.ejs');
+  },
+
 
   //refer
   postRestaurant: (req, res) => {
@@ -58,7 +72,7 @@ module.exports = {
 
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
-      var dbo = db.db("users");
+      var dbo = db.db("Users");
       var myobj = restaurantInfo;
       dbo.collection("restaurants").insertOne(myobj, function (err, res) {
         if (err) throw err;
@@ -110,7 +124,7 @@ module.exports = {
 
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
-      var dbo = db.db("users");
+      var dbo = db.db("Users");
       var myobj = shelterHomeInfo;
       dbo.collection("shelter_Homes").insertOne(myobj, function (err, res) {
         if (err) throw err;
@@ -143,12 +157,11 @@ module.exports = {
     volunteersInfo.email = req.body.email;
     volunteersInfo.address = req.body.address;
     volunteersInfo.city = req.body.city;
-    
     console.log(JSON.stringify(volunteersInfo));
 
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
-      var dbo = db.db("users");
+      var dbo = db.db("Users");
       var myobj = volunteersInfo;
       dbo.collection("volunteer").insertOne(myobj, function (err, res) {
         if (err) throw err;
