@@ -32,7 +32,7 @@ class SignUp extends Component {
                 <div>
                     <form id="special">
                         <div className="form-group">
-                            <h3>Start collecting today!</h3>
+                            <h3>Join Us Today!</h3>
                         </div>
                         {/* <div className="form-group">
                             <input
@@ -78,7 +78,7 @@ class SignUp extends Component {
                                 }}
                             />
                         </div> */}
-
+{/* 
                         <div className="form-group">
                             <input
                                 className="form-control"
@@ -92,7 +92,7 @@ class SignUp extends Component {
                                     });
                                 }}
                             />
-                        </div>
+                        </div> */}
 
                         {/* <div className="form-group">
                             <input

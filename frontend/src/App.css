@@ -167,7 +167,7 @@ Nav.header NavItem {
 }
 
 .put-bg img{
-  width: 200%;
+  width: 100%;
 }
 
 .upper-padding {
@@ -192,3 +192,29 @@ Nav.header NavItem {
   border-radius: 45px;
 }
 
+.extra-padding {
+  padding: 15px;
+}
+
+.top-padding {
+  border-top: 500px;
+}
+
+div.vertical-line{
+  width: 1px;
+  background-color: silver;
+  height: 150px;
+  float: left;
+  border: 2px ridge silver ;
+  border-radius: 2px;
+}
+
+html {
+  overflow-x: initial !important;
+}
+
+.bg-block {
+	background-image: linear-gradient(180deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('./components/images/frontpage.jpeg');
+	background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('./components/images/frontpage.jpeg');
+	background-position: 0px 0px, 50% 50%;
+}

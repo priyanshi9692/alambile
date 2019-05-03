@@ -7,7 +7,7 @@ export default class Header extends Component {
         return (
             <header className="main-header">
                 <a href="#" className="logo">
-                    <span className="logo-lg"><Link to="/home"><b>FoodCo App</b></Link></span>
+                    <span className="logo-lg"><Link to="/home"><b>Alambile</b></Link></span>
                 </a>
                 <nav className="navbar navbar-static-top">
                     <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">

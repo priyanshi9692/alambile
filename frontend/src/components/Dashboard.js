@@ -13,7 +13,6 @@ import MenuItem from './MenuItem';
 import { crtAnc } from './myfunctions';
 import { crtQuiz } from './myfunctions';
 //import { rmvStd  } from './myfunctions';
-import Assignment from './Assignment';
 
 class Dashboard extends Component {
     
