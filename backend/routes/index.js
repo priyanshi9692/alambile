@@ -27,7 +27,20 @@ var mailOptions = {
 };
 
 
-
+function savelogininfo(email,password){
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("Users");
+    var loginInfo= {};
+    loginInfo.username = email;
+    loginInfo.password = password;
+    var myobj = loginInfo;
+    dbo.collection("login").insertOne(myobj, function (err, res) {
+      if (err) throw err;
+      console.log("1 document inserted");
+    });
+  });
+}
 
 module.exports = {
   getHomePage: (req, res) => {
@@ -35,23 +48,44 @@ module.exports = {
     res.render('home.ejs');
   },
 
-  getPaymentPage: (req, res) => {
+  getRestaurantPage: (req, res) => {
     console.log(req.params.id);
-    res.render('payment.ejs');
+    res.send('success');
   },
 
   getLogin: (req, res) => {
-    console.log(req.params.id);
-    console.log(req.params.password);
+    //console.log(req);
+    console.log(req.query);
+    console.log(req.body);
+    var password = req.body.user_password;
+    var username2 = req.body.user_email;
+   
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
       var dbo = db.db("Users");
-      var myobj = restaurantInfo;
-      dbo.collection("restaurants").findOne(myobj, function (err, res) {
-          //if(res.)
+      var query = { username: username2 };
+      console.log(query);
+      dbo.collection("login").find(query).toArray((err, items)=> {
+        console.log(items);
+        if(items != []){
+        var returnString;
+        if(password == items[0].password){
+          
+          returnString = "User Successfully logged in";
+          console.log(returnString);
+          res.send(returnString);
+          return;
+        } else {
+          returnString = "Incorrect password";
+          return res.send(returnString);
+        }
+      } else {
+        returnString = "Incorrect EmailId";
+          return res.send(returnString);
+      }
       });
     });
-    res.render('payment.ejs');
+ 
   },
 
 
@@ -66,8 +100,9 @@ module.exports = {
     restaurantInfo.address = req.body.address;
     restaurantInfo.city = req.body.city;
     restaurantInfo.zipcode = req.body.zipcode;
-    
+    restaurantInfo.password = req.body.password;
     // restaurantInfo.membership = req.body.pay;
+    savelogininfo(restaurantInfo.email,restaurantInfo.password);
     console.log(JSON.stringify(restaurantInfo));
 
     MongoClient.connect(url, function (err, db) {
@@ -76,18 +111,19 @@ module.exports = {
       var myobj = restaurantInfo;
       dbo.collection("restaurants").insertOne(myobj, function (err, res) {
         if (err) throw err;
+        console.log(res);
         console.log("1 document inserted");
         //Mail code
         mailOptions.to = restaurantInfo.email + "; priyanshi.jajoo@sjsu.edu";
         mailOptions.subject = "Congratulations!!!Registered as Customer";
         mailOptions.html = "Hi <b>" + restaurantInfo.firstname + "</b>, " + "<br /> <br /> Thank you for participating for our charitable organization. <br /><br /> Regards, <br /> CMPE-272";
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log('Sending success email ' + info.response);
-          }
-        });
+        // transporter.sendMail(mailOptions, function (error, info) {
+        //   if (error) {
+        //     console.log(error);
+        //   } else {
+        //     console.log('Sending success email ' + info.response);
+        //   }
+        // });
 
         db.close();
       });

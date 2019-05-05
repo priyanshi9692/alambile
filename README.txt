@@ -7,7 +7,7 @@ How to run backend code:
 1. cd backend
 2. npm i
 3. npm app.js
-server will start at 5000 port localhost:5000
+server will start at 3001 port localhost:3001
 
 How to run frontend code:
 1. cd frontend

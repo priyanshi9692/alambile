@@ -7,14 +7,14 @@ const app = express();
 
 //Imports to route
  const {getHomePage} = require('./routes/index');
- const {getPaymentPage} = require('./routes/index');
+ //const {getPaymentPage} = require('./routes/index');
  const {postRestaurant} = require('./routes/index');
  const {postShelterHomes} = require('./routes/index');
  const {postVolunteers} = require('./routes/index');
-
+ const {getLogin} = require('./routes/index');
 
 /* Set up values */
-const port = 5000;
+const port = 3001;
 // configure middleware
 app.set('port', process.env.port || port); 
 app.set('views', __dirname + '/views'); 
@@ -29,7 +29,8 @@ app.use(fileUpload());
 
 // routes for our app
 app.get('/', getHomePage);
-app.get('/payment', getPaymentPage);
+//app.get('/payment', getPaymentPage);
+app.post('/login', getLogin);
 app.post('/restaurant', postRestaurant);
 app.post('/shelterHomes', postShelterHomes);
 app.post('/volunteers', postVolunteers);
