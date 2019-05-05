@@ -101,7 +101,6 @@ module.exports = {
     restaurantInfo.city = req.body.city;
     restaurantInfo.zipcode = req.body.zipcode;
     restaurantInfo.password = req.body.password;
-    // restaurantInfo.membership = req.body.pay;
     savelogininfo(restaurantInfo.email,restaurantInfo.password);
     console.log(JSON.stringify(restaurantInfo));
 
@@ -117,32 +116,17 @@ module.exports = {
         mailOptions.to = restaurantInfo.email + "; priyanshi.jajoo@sjsu.edu";
         mailOptions.subject = "Congratulations!!!Registered as Customer";
         mailOptions.html = "Hi <b>" + restaurantInfo.firstname + "</b>, " + "<br /> <br /> Thank you for participating for our charitable organization. <br /><br /> Regards, <br /> CMPE-272";
-        // transporter.sendMail(mailOptions, function (error, info) {
-        //   if (error) {
-        //     console.log(error);
-        //   } else {
-        //     console.log('Sending success email ' + info.response);
-        //   }
-        // });
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Sending success email ' + info.response);
+          }
+        });
 
         db.close();
       });
     });
-
-
-
-    // //React or angular
-    //         request.post({
-    //             url: 'http://localhost:5000/payment',
-    //             body: JSON.stringify(clientpayInfo),
-    //             headers: {
-    //                 'Content-type': 'application/json'
-    //               }
-    //         } , function (error, response, body) {
-    //             console.log('error:', error); // Print the error if one occurred
-    //             console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-    //             console.log('body:', body); // Print the HTML for the Google homepage.
-    //         });
     res.send('success');
   },
   postShelterHomes: (req, res) => {
@@ -155,6 +139,7 @@ module.exports = {
     shelterHomeInfo.address = req.body.address;
     shelterHomeInfo.city = req.body.city;
     shelterHomeInfo.zipcode = req.body.zipcode;
+    shelterHomeInfo.password = req.body.password;
    
     console.log(JSON.stringify(shelterHomeInfo));
 
@@ -193,6 +178,8 @@ module.exports = {
     volunteersInfo.email = req.body.email;
     volunteersInfo.address = req.body.address;
     volunteersInfo.city = req.body.city;
+    volunteersInfo.zipcode = req.body.zipcode;
+    volunteersInfo.password = req.body.password;
     console.log(JSON.stringify(volunteersInfo));
 
     MongoClient.connect(url, function (err, db) {

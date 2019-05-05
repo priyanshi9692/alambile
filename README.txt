@@ -18,6 +18,44 @@ server will start at 3000 port localhost:3000
 
 Database:
 
+
 Start mongodb using command 
 
 mongod  in your terminal
+
+Database name: Users
+Collection tables:
+1. login(with below json fields)
+{
+    "username" : "priyanshijajoo96@gmail.com",
+    "password" : "alambile"
+}
+2. restaurant(sign up page details)
+{
+    "firstname" : "Piyush",
+    "restaurantName" : "PrIYaUnSHi's",
+    "email" : "piyush@gamil.com",
+    "address" : "Apt 80, 1800 Campbell",
+    "city" : "San Jose",
+    "zipcode" : 95126,
+    "password" : "1234"
+}
+3. shelter_Homes(sign up page details)
+{
+    "firstname" : "Priyanshi Jajoo",
+    "shelterHomeName" : "Homeless Hostel",
+    "email" : "priyanshi.96@gmail.com",
+    "address" : "Apt 80, 1800 campbell",
+    "city" : "San Jose",
+    "zipcode" : 95126,
+    "password" : "1234"
+}
+4. volunteer (sign up page details)
+{
+    "firstname" : "Piyush Mantri",
+    "email" : "piyusman@gmail.com",
+    "address" : "Apt 80, Campbell",
+    "city" : "San Jose",
+    "zipcode" : 95126,
+    "password" : "1234"
+}
