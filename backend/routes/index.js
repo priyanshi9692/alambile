@@ -45,7 +45,7 @@ function savelogininfo(email,password){
 module.exports = {
   getHomePage: (req, res) => {
 
-    res.render('home.ejs');
+    res.send('success');
   },
 
   getRestaurantPage: (req, res) => {
