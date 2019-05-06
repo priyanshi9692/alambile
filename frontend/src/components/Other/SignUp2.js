@@ -12,7 +12,7 @@ class SignUp extends Component {
         password: '',
         email : '',
         name:'',
-        type:'',
+        type:'volunteer',
 
     };
 
@@ -127,7 +127,7 @@ class SignUp extends Component {
                         <div className="form-group">
                             <Button
                                 bsStyle="primary"
-                                onClick={() => this.props.handleRegister(this.state)}>
+                                onClick={() => this.props.handleRegister(this.state.type)}>
                                 Register
                             </Button>
                         </div>

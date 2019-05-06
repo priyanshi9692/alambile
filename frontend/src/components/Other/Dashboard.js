@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../../App.css';
-import * as API from '../../api/API';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
@@ -26,19 +25,19 @@ class Dashboard extends Component {
 
         });
          console.log("Inside component will mount");
-         API.checkSession().then((data)=>{
+        //  API.checkSession().then((data)=>{
             
-             console.log("Inside check session");
-                this.setState({
-                    images:data,
-                    message: "You have logged in ..",
-                })
-                console.log(this.state.images); 
-                console.log("inside here ");
-        }).catch((error)=>{ 
-            console.log("Inside error of will mount")
+        //      console.log("Inside check session");
+        //         this.setState({
+        //             images:data,
+        //             message: "You have logged in ..",
+        //         })
+        //         console.log(this.state.images); 
+        //         console.log("inside here ");
+        // }).catch((error)=>{ 
+        //     console.log("Inside error of will mount")
         
-        })
+        // })
 
 
     }
@@ -52,17 +51,17 @@ class Dashboard extends Component {
         payload.append('username',this.state.username);
 
         console.log("payload for upload");
-        API.uploadFile(payload)
-            .then((status) => {
-                if (status === 204) {
-                    API.getImages()
-                        .then((data) => {
-                            this.setState({
-                                images: data
-                            });
-                        });
-                }
-            });
+        // API.uploadFile(payload)
+        //     .then((status) => {
+        //         if (status === 204) {
+        //             API.getImages()
+        //                 .then((data) => {
+        //                     this.setState({
+        //                         images: data
+        //                     });
+        //                 });
+        //         }
+        //     });
 
     };
 

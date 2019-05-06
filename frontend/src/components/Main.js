@@ -1,46 +1,49 @@
 import React, {Component} from 'react';
 import {Route,Switch} from 'react-router-dom';
-import Signin from './SignIn';
-import Signup from './SignUp';
 import Home from './Home';
-import DispProfile from './DispProfile';
-import UpdateProfile from './UpdateProfile';
 import UpdatePhoto from './UpdatePhoto';
 import Dashboard from './Dashboard';
 import Search from './Search';
 import EnrollCourse from './EnrollCourse';
 import DropCourse from './DropCourse';
 import CourseMenu from './CourseMenu';
-import ViewSub from './ViewSub';
 import DisplayPage from './Other/HomePage';
 import DisplayMap from './Other/Map';
-import Register from './Register';
+import RegisterVolunteer from "./Other/RegisterVolunteer";
+import RegisterRestaurant from "./Other/RegisterRestaurant";
+import RegisterVolunteerExtra from "./Other/RegisterVolunteerExtra";
+import RegisterShelter from "./Other/RegisterShelter";
+import Restaurant from "./Other/Dashboard/Restaurant";
+import Volunteer from "./Other/Dashboard/Volunteer";
+
+import './style.css';
 
 
 //Create a Main Component
 class Main extends Component {
     render(){
         return(
-            <div>
+            <div className="grey-background">
                 {/*Render Different Component based on Route*/}
         
                 <Switch>
-                <Route path="/signin" component={Signin}/>
-                <Route path="/signup" component={Signup} />
-                <Route path="/register" component={Register} />
                 <Route path="/home" component={Home}/>
-                <Route  path="/" component={DisplayPage}/>
+                <Route exact path="/" component={DisplayPage}/>
                 
-                </Switch>
                 
-                <Route path="/dispProfile" component={DispProfile}/>
                 <Route path="/updatePhoto" component={UpdatePhoto}/>
                 <Route exact path="/dashboard" component={Dashboard}/>
                 <Route path="/map" component={DisplayMap}/>
                 <Route path="/search" component={Search}/>
                 <Route path="/enrollCourse" component={EnrollCourse}/>
                 <Route path="/dropCourse" component={DropCourse}/>
-                <Route path="/ViewSub" component={ViewSub}/>
+                <Route path="/registervolunteer" component={RegisterVolunteer}/>
+                <Route path="/registerrestaurant" component={RegisterRestaurant}/>
+                <Route path="/registervolunteerextra" component={RegisterVolunteerExtra}/>
+                <Route path="/registershelter" component={RegisterShelter}/>
+                <Route path="/restaurant" component={Restaurant}/>
+                <Route path="/volunteer" component={Volunteer}/>
+                </Switch>
                
               
                 
