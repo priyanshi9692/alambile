@@ -12,6 +12,8 @@ const app = express();
  const {postShelterHomes} = require('./routes/index');
  const {postVolunteers} = require('./routes/index');
  const {getLogin} = require('./routes/index');
+ const {postFoodDetails} = require('./routes/index');
+ const {getFoodRequest} = require('./routes/index');
 
 /* Set up values */
 const port = 3001;
@@ -34,6 +36,8 @@ app.post('/login', getLogin);
 app.post('/restaurant', postRestaurant);
 app.post('/shelterHomes', postShelterHomes);
 app.post('/volunteers', postVolunteers);
+app.post('/restaurantdetails',postFoodDetails);
+app.get('/Fooddetails',getFoodRequest);
 
 
 
