@@ -204,7 +204,52 @@ module.exports = {
       db.close();
     });
     res.send('success');
-  }
+  },
+  //restaurant dashboard//
+  getFoodRequest: (req, res) => {
+    //console.log(req);
+    console.log(req.query);
+    console.log(req.body);
+    var email = req.body.user_email;
+   
+    MongoClient.connect(url, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("Users");
+      var query= {username:email} ;
+      console.log(query);
+      dbo.collection("restaurant").find(query).toArray((err, items)=> {
+      console.log(items);
+      });
+    });
+
+  res.send('success');
+
+},
+
+//Food Details//
+postFoodDetails: (req, res) => {
+  console.log(req.body);
+  var FoodDetailsInfo = {};
+  FoodDetailsInfo.Foodtype = req.body.Foodtype;
+  FoodDetailsInfo.Shelflife = req.body.Shelflife;
+  FoodDetailsInfo.Foodimage = req.body.Foodimage;
+  FoodDetailsInfo.Foodquantity= req.body.Foodquantity;
+  FoodDetailsInfo.requeststatus = req.body.requeststatus;
+  console.log(JSON.stringify(FoodDetailsInfo));
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("Users");
+    var myobj = FoodDetailsInfo;
+    dbo.collection("restaurant").insertOne(myobj, function (err, res) {
+      if (err) throw err;
+      console.log("1 document inserted");
+      });
+
+    db.close();
+  });
+  res.send('success');
+}
 
 
 }
