@@ -3,6 +3,7 @@ import axios from "axios";
 import "./style.css";
 import {Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import Card from 'react-bootstrap/Card'
 
 class OpenRequest extends Component {
 
@@ -32,15 +33,18 @@ class OpenRequest extends Component {
             <div className="col-md-3">
             </div>
             <div className="col-md-6">     
-						<div className="card" style={{"width": "18rem"}}>
-							<div className="card-body">
-								<h5 className="card-title">Card title</h5>
-								<h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-								<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-								<a href="#" className="card-link">Card link</a>
-								<a href="#" className="card-link">Another link</a>
-							</div>
-						</div>
+						<Card style={{ width: '18rem' }}>
+                <Card.Body>
+                    <Card.Title>Card Title</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+                    <Card.Text>
+                    Some quick example text to build on the card title and make up the bulk of
+                    the card's content.
+                    </Card.Text>
+                    <Card.Link href="#">Card Link</Card.Link>
+                    <Card.Link href="#">Another Link</Card.Link>
+                </Card.Body>
+                </Card>;
             </div>
             <div className="col-md-3"></div>
             </div>

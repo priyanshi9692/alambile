@@ -4,7 +4,6 @@ import Home from './Home';
 import UpdatePhoto from './UpdatePhoto';
 import Dashboard from './Dashboard';
 import Search from './Search';
-import EnrollCourse from './EnrollCourse';
 import DisplayPage from './Other/HomePage';
 import DisplayMap from './Other/Map';
 import RegisterVolunteer from "./Other/RegisterVolunteer";
@@ -47,7 +46,7 @@ class Main extends Component {
               
            {/*        <Route path="/courseMenu" render={(props)=> <Dashboard{...props} targetId={""}/>} /> */}
           {/*      <Route exact strict path="/dashboard/:handle" component={Assignment} /> */}
-          <Route  path="/dashboard/course/:courseid/:user_type" render={(props)=> <CourseMenu{...props} targetId={""} />} />
+          {/* <Route  path="/dashboard/course/:courseid/:user_type" render={(props)=> <CourseMenu{...props} targetId={""} />} /> */}
             </div>
         )
         
