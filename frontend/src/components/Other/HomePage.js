@@ -27,8 +27,8 @@ class HomePage extends Component {
             this.props.history.push('/registerrestaurant');
         } else if (userdata === "volunteer") {
             this.props.history.push('/registervolunteer');
-        } else if (userdata === "shelterHomes") {
-            this.props.history.push('/registershelterhome');
+        } else if (userdata === "shelter") {
+            this.props.history.push('/registershelter');
         } else {
             this.props.history.push('/');
         }

@@ -5,6 +5,7 @@ import {Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 
 import NewRequest from "./NewRequest";
+import OpenRequest from "./OpenRequest";
 
 class Restaurant extends Component {
 
@@ -48,7 +49,7 @@ class Restaurant extends Component {
             <div className="col-md-3"></div>
             <div className="col-md-6"> 
                 <Link to={'/restaurant/create'} >Create New</Link> &nbsp;
-                <Link to={'/restaurant'} >Open Requests</Link> &nbsp;
+                <Link to={'/restaurant/open'} >Open Requests</Link> &nbsp;
                 <Link to={'/restaurant'} >Closed Requests</Link> &nbsp;
                 <Link to={'/restaurant'} >History</Link> &nbsp;
             </div>
@@ -59,7 +60,7 @@ class Restaurant extends Component {
             <div className="col-md-3"></div>
             <div className="col-md-6"> 
                 <Route path="/restaurant/create" render={(props) => <NewRequest {...props} open={this.state.open} />} />
-                <Route path="/restaurant/open" render={(props) => <NewRequest {...props} open={this.state.open} />} />
+                <Route path="/restaurant/open" render={(props) => <OpenRequest {...props} open={this.state.open} />} />
                 <Route path="/restaurant/closed" render={(props) => <NewRequest {...props} open={this.state.open} />} />
                 <Route path="/restaurant/history" render={(props) => <NewRequest {...props} open={this.state.open} />} />
             </div>

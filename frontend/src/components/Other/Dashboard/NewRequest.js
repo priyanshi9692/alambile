@@ -11,7 +11,7 @@ class NewRequest extends Component {
         description: '',
         weight: '',
         type: '',
-        image: '',
+        image: "https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_pic_default.png-26-345032f7d91f49f2.png",
 	}
 
 	onChangeInput = (e) => {
@@ -73,6 +73,18 @@ class NewRequest extends Component {
             </div>
             <div className="col-md-6">    
             <form className="registerform" onSubmit={this.onSubmitProfile}>
+                <div style={{ width: "30%" }} className="form-group">
+				Image
+				<img
+                    class="profile_photo_img"
+                    src={this.state.image}
+                    alt="Ankita Chikodi"
+                    height="200"
+                    width="200"
+                />
+                <br />
+                <input type="file" onChange={this.fileChangedHandler} />
+				</div>
 				<div style={{ width: "60%" }} className="form-group">
 				Description
 				<input
@@ -100,27 +112,32 @@ class NewRequest extends Component {
                         
                     </select>
 				</div>
-				<div style={{ width: "30%" }} className="form-group">
-				Weight
+				<div style={{ width: "60%" }} className="form-group">
+				Shelf Life
+                    <select
+                        className="form-control"
+                        value={this.state.type}
+                        onChange={(event) => {
+                            this.setState({
+                                type: event.target.value
+                            });
+                        }}
+                    >
+                        <option value="tonight">Tonight</option>
+                        <option value="days">Days</option>
+                        <option value="weeks">Weeks</option>
+                        <option value="years">Years</option>
+                    </select>
+				</div>
+				<div style={{ width: "60%" }} className="form-group">
+				Quantity
 				<input
 					onChange={this.onChangeInput}
 					type="text"
 					className="form-control"
-								name="weight"
-					placeholder="weight"
-				/>
-				</div>
-                <div style={{ width: "30%" }} className="form-group">
-				Image
-				<img
-                    class="profile_photo_img"
-                    src="https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_pic_default.png-26-345032f7d91f49f2.png"
-                    alt="Ankita Chikodi"
-                    height="200"
-                    width="200"
-                />
-                <br />
-                <input type="file" onChange={this.fileChangedHandler} />
+								name="quantity"
+					placeholder="quantity in lbs"
+				/> lbs
 				</div>
 				<div style={{ width: "60%" }}>
 				<button

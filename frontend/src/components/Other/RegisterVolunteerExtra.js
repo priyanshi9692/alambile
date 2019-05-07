@@ -45,19 +45,19 @@ class RegisterVolunteerExtra extends Component {
             As you are a new volunteer, we would like to know more about you before we proceed!
             </div>
 				<div style={{ width: "80%" }} className="form-group">
-				Question 1
+				Why do you want to be a volunteer?
                 <textarea style={{ width: "120%", height: "200%" }} onChange={this.onChangeInput}/>
 				</div>
 				<div style={{ width: "80%" }} className="form-group">
-				Question 2
+				Hve you had previous volunteering experience?
+                <textarea style={{ width: "120%", height: "200%" }} onChange={this.onChangeInput}/>
+				</div>	
+				<div style={{ width: "80%" }} className="form-group">
+				Are you a certified food handler?
                 <textarea style={{ width: "120%", height: "200%" }} onChange={this.onChangeInput}/>
 				</div>
 				<div style={{ width: "80%" }} className="form-group">
-				Question 3
-                <textarea style={{ width: "120%", height: "200%" }} onChange={this.onChangeInput}/>
-				</div>
-				<div style={{ width: "80%" }} className="form-group">
-				Question 4
+				What are you other hobbies and/or interests?
                 <textarea style={{ width: "120%", height: "200%" }} onChange={this.onChangeInput}/>
 				</div>
 				<div style={{ width: "30%" }} className="form-group">
@@ -91,7 +91,7 @@ class RegisterVolunteerExtra extends Component {
 					className="btn btn-success"
 					type="submit"
 				>
-					Register!
+					Submit!
 				</button>
 				</div>
 			</form>

@@ -5,8 +5,6 @@ import UpdatePhoto from './UpdatePhoto';
 import Dashboard from './Dashboard';
 import Search from './Search';
 import EnrollCourse from './EnrollCourse';
-import DropCourse from './DropCourse';
-import CourseMenu from './CourseMenu';
 import DisplayPage from './Other/HomePage';
 import DisplayMap from './Other/Map';
 import RegisterVolunteer from "./Other/RegisterVolunteer";
@@ -35,8 +33,6 @@ class Main extends Component {
                 <Route exact path="/dashboard" component={Dashboard}/>
                 <Route path="/map" component={DisplayMap}/>
                 <Route path="/search" component={Search}/>
-                <Route path="/enrollCourse" component={EnrollCourse}/>
-                <Route path="/dropCourse" component={DropCourse}/>
                 <Route path="/registervolunteer" component={RegisterVolunteer}/>
                 <Route path="/registerrestaurant" component={RegisterRestaurant}/>
                 <Route path="/registervolunteerextra" component={RegisterVolunteerExtra}/>

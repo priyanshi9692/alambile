@@ -121,7 +121,7 @@ class SignUp extends Component {
                             >
                                 <option value="volunteer">Volunteer</option>
                                 <option value="restaurant">Restaurant</option>
-                                <option value="shelterHomes">Shelter Home</option>
+                                <option value="shelter">Shelter Home</option>
                             </select>
                         </div>
                         <div className="form-group">

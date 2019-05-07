@@ -101,6 +101,11 @@ class RegisterVolunteer extends Component {
 					placeholder="credentials"
 				/>
 				</div>
+				<div style={{ width: "80%" }} className="form-group">
+				Image of Food Handler Card
+                <br />
+                <input type="file" onChange={this.fileChangedHandler} />
+				</div>
 				<div style={{ width: "80%" }}>
 				<button
 					onClick={this.onSubmitProfile}
