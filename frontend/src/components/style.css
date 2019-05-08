@@ -14,4 +14,10 @@
   
   .grey-background {
     background-color: #F8F8F8;
+    z-index: -100;
+  }
+
+  .loginimage {
+    height: 100%;
+    width: 100%;
   }

@@ -3,6 +3,12 @@ import axios from "axios";
 import "./style.css";
 import {Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import Card from 'react-bootstrap/Card'
+import CardGroup from 'react-bootstrap/Card'
+
+import 'bootstrap/dist/css/bootstrap.css';
+import newimage1 from '../../images/bgimg3.jpeg';
+import newimage2 from '../../images/holder.PNG';
 
 class NewRequest extends Component {
 
@@ -12,6 +18,7 @@ class NewRequest extends Component {
         weight: '',
         type: '',
         image: "https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_pic_default.png-26-345032f7d91f49f2.png",
+        status: '',
 	}
 
 	onChangeInput = (e) => {
@@ -69,16 +76,54 @@ class NewRequest extends Component {
 		return (
 		<div>
             <div className="row">
-            <div className="col-md-3">
+            <div className="col-md-6">
+            <CardGroup>
+  <Card>
+    <Card.Img variant="top" src={newimage1} />
+    <Card.Body>
+      <Card.Title>Step 1</Card.Title>
+      <Card.Text>
+        Inspect food and ....
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <small className="text-muted">Last updated 3 mins ago</small>
+    </Card.Footer>
+  </Card>
+  <Card>
+    <Card.Img variant="top" src={newimage2} />
+    <Card.Body>
+      <Card.Title>Step 2</Card.Title>
+      <Card.Text>
+        Fill out form, and take picture....
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <small className="text-muted">Last updated 3 mins ago</small>
+    </Card.Footer>
+  </Card>
+  <Card>
+    <Card.Img variant="top" src={newimage2} />
+    <Card.Body>
+      <Card.Title>Step 3</Card.Title>
+      <Card.Text>
+        Send the request for a volunteer to accept
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <small className="text-muted">Last updated 3 mins ago</small>
+    </Card.Footer>
+  </Card>
+</CardGroup>;
             </div>
-            <div className="col-md-6">    
+            <div className="col-md-4">    
             <form className="registerform" onSubmit={this.onSubmitProfile}>
                 <div style={{ width: "30%" }} className="form-group">
-				Image
+				Food Image
 				<img
                     class="profile_photo_img"
                     src={this.state.image}
-                    alt="Ankita Chikodi"
+                    alt="Food Image"
                     height="200"
                     width="200"
                 />
@@ -150,7 +195,9 @@ class NewRequest extends Component {
 				</div>
 			</form>   
             </div>
-            <div className="col-md-3"></div>
+            <div className="col-md-2">
+
+            </div>
             </div>
 		</div>
 		)

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from "axios";
 import "./style.css";
 
+import bgImage from '../images/bgimg2.jpeg';
+
 class RegisterRestaurant extends Component {
 
 	state = {
@@ -10,7 +12,8 @@ class RegisterRestaurant extends Component {
 	fullName: '',
 	email: '',
 	address: '',
-
+	image: 'https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_pic_default.png-26-345032f7d91f49f2.png',
+	error: {},
 	}
 
 	onChangeInput = (e) => {
@@ -19,35 +22,124 @@ class RegisterRestaurant extends Component {
 
 	onSubmitProfile = (e) => {
 		e.preventDefault();
-		axios.post('/registerrestaurant',this.state)
-			.then(res => {
-				console.log(res);
-			})
+		this.props.history.push("/registersuccess");
+		if(Object.entries(this.validate()).length === 0) {
+			axios.post('/registerrestaurant',this.state)
+				.then(res => {
+					console.log(res);
+				})
+			}
+			this.props.history.push("/registersuccess");
 	};
+
+  getBase64(file, cb) {
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function () {
+				cb(reader.result)
+		};
+		reader.onerror = function (error) {
+				console.log('Error: ', error);
+		};
+}
+
+	fileChangedHandler = (e) => {
+
+			let idCardBase64 = '';
+			this.getBase64(e.target.files[0], (result) => {
+					idCardBase64 = result;
+			});
+
+			const file = e.target.files[0]
+			const reader = new FileReader();
+
+			reader.onloadend = () => {
+					this.setState({
+							image: idCardBase64
+					})
+			}
+			if (file) {
+					reader.readAsDataURL(file);
+					this.setState({
+							image: idCardBase64
+					})
+			}
+			else {
+					this.setState({
+							image: ""
+					})
+			}
+	}
+  uploadHandler = () => {
+      console.log(this.state.image)
+	}
+	
+  validate(){
+		const error = {};
+		if(!this.state.username){
+			error.username = 'Enter Username';
+		}
+		if(!this.state.firstname){
+			error.firstname = 'Enter First Name';
+		}
+		if(!this.state.familyName){
+			error.familyName = 'Enter Family Name';
+		}
+		if(!this.state.email){
+			error.email = 'Enter Email';
+		}
+		if(!this.state.city){
+			error.city = 'Enter City';
+		}
+		if(!this.state.address){
+			error.address = 'Enter address';
+		}
+		if(!this.state.zipcode){
+			error.zipcode = 'Enter Zip';
+		}else if(!new RegExp("^[0-9]{5}$|^[0-9]{5}\-[0-9]{4}$").test(this.state.zipcode)){
+			error.zipcode = 'Enter Valid Zip';
+		}
+		if(!this.state.password){
+			error.password = 'Enter Password';
+		}else if(!new RegExp("^(?=[a-zA-Z])(?=.*[0-9])(?=.*[#\$_%!@.~^:?()+&\/*-])(?=.*[A-Z])(?=.*[a-z])(?!.*[^a-zA-Z0-9#\$_%!@.~^:?()+&\/*-])(?!.*\s).{6,15}$").test(this.state.password)){
+			error.password = 'Enter a Stronger Password';
+		}
+		this.setState({error: error});
+		return error;
+	}
 
 	render() {
 		return (
-		<div>
-			<div className="container col-md-8 col-md-offset-5">
-			<h3>Restaurant Registration</h3>
-			<img
-				class="profile_photo_img"
-				src="https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_pic_default.png-26-345032f7d91f49f2.png"
-				alt="Ankita Chikodi"
-				height="200"
-				width="200"
-			/>
-			<br />
+			<div className="bigfrontreg">
+		            <div className="row justify-content-md-center top-padding clearbg loginimage">
+                <img className="loginimage" id="special"  src={bgImage}/>
+                    
+                <hr/>
+            </div>
+			<div className="col-md-8 col-md-offset-5">
+
 			<form className="registerform" onSubmit={this.onSubmitProfile}>
+				<h1>Volunteer Registration</h1>
+				Restaurant Image
+				<img
+					class="profile_photo_img"
+					src={this.state.image}
+					alt="Prof Image"
+					height="200"
+					width="200"
+				/>
+				<input type="file" onChange={this.fileChangedHandler}/>
+				<br />
 				<div style={{ width: "80%" }} className="form-group">
-				Username
+				Contact Email
 				<input
 					onChange={this.onChangeInput}
 					type="text"
 					className="form-control"
-								name="username"
-					placeholder="username"
+								name="email"
+					placeholder="email"
 				/>
+				<p className='error'>{this.state.error.email}</p>
 				</div>
 				<div style={{ width: "80%" }} className="form-group">
 				Password
@@ -58,29 +150,19 @@ class RegisterRestaurant extends Component {
 								name="password"
 					placeholder="password"
 				/>
+				<p className='error'>{this.state.error.password}</p>
 				</div>
 				<div style={{ width: "80%" }} className="form-group">
-				Contact Name
+				Restaurant Name
 				<input
 					onChange={this.onChangeInput}
 					type="text"
 					className="form-control"
-								name="fullName"
-					placeholder="full name"
+								name="firstname"
+					placeholder="first name"
 				/>
+				<p className='error'>{this.state.error.firstname}</p>
 				</div>
-
-				<div style={{ width: "80%" }} className="form-group">
-				Contact Email
-				<input
-					onChange={this.onChangeInput}
-					type="text"
-					className="form-control"
-					name="email"
-					placeholder="email"
-				/>
-				</div>
-
 				<div style={{ width: "80%" }} className="form-group">
 				Restaurant Address
 				<input
@@ -90,16 +172,29 @@ class RegisterRestaurant extends Component {
 					name="address"
 					placeholder="address"
 				/>
+				<p className='error'>{this.state.error.address}</p>
 				</div>
 				<div style={{ width: "80%" }} className="form-group">
-				Food Type
+				City
 				<input
 					onChange={this.onChangeInput}
 					type="text"
 					className="form-control"
-					name="foodType"
-					placeholder="e.g. Western, Vegetarian"
+					name="city"
+					placeholder="city"
 				/>
+				<p className='error'>{this.state.error.city}</p>
+				</div>
+				<div style={{ width: "80%" }} className="form-group">
+				Zip Code
+				<input
+					onChange={this.onChangeInput}
+					type="text"
+					className="form-control"
+					name="zipcode"
+					placeholder="zipcode"
+				/>
+				<p className='error'>{this.state.error.zipcode}</p>
 				</div>
 				<div style={{ width: "80%" }}>
 				<button

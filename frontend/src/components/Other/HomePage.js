@@ -7,6 +7,9 @@ import SignUp from "./SignUp2";
 //import UpdateProfile from "./UpdateProfile";
 import {Button} from "react-bootstrap";
 import bgImage from '../images/cover_image.PNG';
+import infoimg1 from '../images/titleinfo1.jpeg';
+import infoimg2 from '../images/titleinfo2.jpeg';
+import infoimg3 from '../images/titleinfo3.jpeg';
 import Header from "../Header";
 
 
@@ -40,20 +43,15 @@ class HomePage extends Component {
         return (
  
 
- <div>
-    <Header />
-    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-        <div class="col-md5 p-lg-5 mx-auto my-5">
-        </div>
-        <div></div>
-    </div>
-    <div className="row justify-content-md-center top-padding">
+ <div className="overflow">
+    <Header />  
+    <div className="row justify-content-md-center top-padding ">
         <img id="special"  src={bgImage}/>
             
         <hr/>
     </div>
 
-        <div className="row justify-content-md-center bg-block"> 
+        {/* <div className="row justify-content-md-center bg-block"> 
             <Route exact path="/SignIn" render={() => (
                 <div className="row">
                     <div className="col-md-6">        
@@ -91,7 +89,7 @@ class HomePage extends Component {
 
                 </div>      
                         )}/> 
-       </div>
+       </div> */}
 
         <Route exact path="/dashboard" render={() => (
      <Dashboard {...this.state}/>
@@ -101,7 +99,19 @@ class HomePage extends Component {
      )}/>
         {/* <Route exact path="/updateprofile" render={() => (
      <UpdateProfile {...this.state}/>
-     )}/> */}
+     )}/> */} 
+    <div className="row justify-content-md-center ">
+        <div className="col-md-4 col-md-offset-1">
+        <img id="special" className="imagesize" src={infoimg1}/>
+            
+        <img id="special"  className="imagesize" src={infoimg3}/>      
+    </div>  
+        <div className="col-md-6 col-md-offset-1">
+        <img id="special"  className="imagesize2" src={infoimg2}/>
+            
+        </div>
+            
+    </div>   
 
     <section class="jumbotron text-center">
         <div class="container">
@@ -115,42 +125,42 @@ class HomePage extends Component {
     </section>
 
 
-    <div className="row justify-content-md-center upper-padding"> 
-        <div className="col-md-8 col-md-offset-2">
+    <div className="row justify-content-md-center"> 
+        <div className="col-md-10 ">
         <div className="row justify-content-md-center">
-                <div className="col-md-4 col-md-offset-4" >
+                <div className="col-md-4 col-md-offset-2" >
 
-                    <h1 className="fontsize-big">Why Alambile?</h1>
+                    <h1 className="fontsize-big alambiletitle">Why Alambile?</h1>
                 </div>
 
             </div>
-            <div className="row justify-content-md-center">
+            <div className="row justify-content-md-center fontdetails">
                 <div className="col-md-4">
-                <div className="col-md-2">
+                <div className="col-md-2 numberpadding">
                     <span class="step">1</span>
                     </div>
-                    <div className="col-md-8">
-                    <h3>What</h3>
+                    <div className="col-md-10">
+                    <h2>What</h2>
                     <p></p>
-                    <p>Surplus food from restaurants are waiting to be collected to give to those who value it the most</p>
+                    <p className="paddingleft">Surplus food from restaurants are waiting to be collected to give to those who value it the most</p>
                     </ div>
                 </div>
                 <div className="col-md-4">
-                <div className="col-md-2">
+                <div className="col-md-2 numberpadding">
                     <span class="step">2</span>
                     </div>
-                    <div className="col-md-8">
-                    <h3>How</h3>
-                    <p>We provide you with the platform to instantly connect restaurants with food banks through the help of our local community</p>
+                    <div className="col-md-10">
+                    <h2>How</h2>
+                    <p className="paddingleft">We provide you with the platform to instantly connect restaurants with food banks through the help of our local community</p>
                     </ div>
                 </div>
                 <div className="col-md-4">
-                    <div className="col-md-2">
+                    <div className="col-md-2 numberpadding">
                     <span class="step">3</span>
                     </div>
-                    <div className="col-md-8">
-                    <h3>Why</h3>
-                    <p>Contribute to your local community by reducing waste, feeding the needy, all without commitment, and within your flexibility</p>
+                    <div className="col-md-10">
+                    <h2>Why</h2>
+                    <p className="paddingleft">Contribute to your local community by reducing waste, feeding the needy, all without commitment, and within your flexibility</p>
                     </ div>
                     
                 </div>
@@ -160,18 +170,18 @@ class HomePage extends Component {
     </div>
     <div className="row justify-content-md-center"> 
         <div className="row justify-content-md-center">
-            <div className="col-md-5 col-md-offset-1 extra-padding">
+            <div className="col-md-5 col-md-offset-1 extra-padding fontdetails">
                 <div className="col-md-2"></div>
                 <div className="col-md-9">
-                <h3>Are you are Volunteer?</h3>
+                <h3><strong>Are you are Volunteer?</strong></h3>
                 <p>Valuable food is wasted everyday by restaurants in our local community. Volunteers can accept requests from restaurants to pickup surplus food, which can then be donated to your local food bank. No commitment is required, and you can participate whenever you'd like. To join our cause, register as a volunteer, and we will review your application to become a part of our volunteer community.</p>
                 </ div>
             </div>
             <div class="vertical-line"></div>
-            <div className="col-md-5 extra-padding">
+            <div className="col-md-5 extra-padding fontdetails">
                 <div className="col-md-2"></div>
                 <div className="col-md-9">
-                <h3>Are you are Restaurant?</h3>
+                <h3><strong>Are you are Restaurant?</strong></h3>
                 <p>The next time you have surplus food, instead of disregarding it as waste, submit a pickup request. Willing members in our volunteer community will come and accept the request, and it will be donated to those who value it the most. To join our cause, register today to become a member of our community of participating restaurants. </p>
                 </ div>
             </div>
@@ -187,12 +197,12 @@ class HomePage extends Component {
             </Button>
         </div>
     </div> */}
-    <div className="row justify-content-md-center"> 
-        <div className ="row">
-            <div className="col-md-4 box-position">
+    <div className="dispblock justify-content-md-center padding-below"> 
+        <div className ="row " >
+            <div className="col-md-3 box-position">
 
             </div>
-            <div className="col-md-4 box-position">
+            <div className="col-md-6 box-position ">
                     <div className="col-md-12"> 
             
                             <div className="box-position">
@@ -201,7 +211,7 @@ class HomePage extends Component {
                         </div>
                     </div>
             </div>
-            <div className="col-md-4 box-position">
+            <div className="col-md-3 box-position">
                     <div className="col-md-10"> 
             
 
@@ -210,6 +220,7 @@ class HomePage extends Component {
 
         </div>      
     </div>
+    <hr />
 
 </div>
              

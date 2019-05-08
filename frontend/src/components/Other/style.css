@@ -2,3 +2,104 @@
     margin-left: 0px;
   }
   
+.row {
+  display: block;
+}
+
+.biggerfont {
+  font-size: 2em;
+}
+
+.smallfont {
+  font-size: 1.3em;
+}
+.fontdetails{
+  font-size: 1.5em;
+}
+
+.alambiletitle {
+  padding: 25px;
+}
+
+.navbar.header {
+  display:block;
+}
+
+.whitetitle {
+  color: white;
+}
+
+.titlelink {
+  color: #FFF;
+}
+.titlelink:hover {
+   color: rgb(192, 192, 209)
+}
+
+.numberpadding {
+  padding-top: 35px;
+}
+
+.paddingleft {
+  padding-left: 20px;
+}
+
+.padding-below {
+  padding-bottom: 100px;
+}
+
+.bigfontlogin {
+  font-size: 100%;
+}
+.bigfrontreg {
+  font-size: 125%;
+}
+.bigloginfont.form-control {
+  font-size:80%;
+}
+
+.signinpadding {
+  padding-top: 200px;
+}
+
+.imagesize{
+  height: 200px;
+}
+.imagesize2{
+  height: 350px;
+}
+
+.overflow{
+  overflow: hidden;
+}
+
+.bgwhite {
+  background-color: white;
+}
+
+.clearbg {
+  z-index: 0;
+  position: absolute;
+}
+
+.bringfront {
+  z-index: 5;
+  position: absolute;
+  left: 30%;
+  top: 200px
+}
+
+.pickstatus {
+  padding: 10px;
+  margin: 10px;
+}
+
+.card-img-top {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+}
