@@ -7,9 +7,7 @@ import bgImage from '../images/bgimg2.jpeg';
 class RegisterVolunteer extends Component {
 
 	state = {
-	username: '',
 	password: '',
-	fullName: '',
 	firstname: '',
 	email: '',
 	address: '',
@@ -148,7 +146,7 @@ class RegisterVolunteer extends Component {
 			<div className="col-md-8 col-md-offset-5">
 
 			<form className="registerform" onSubmit={this.onSubmitProfile}>
-				<h1>Restaurant Registration</h1>
+				<h1>Volunteer Registration</h1>
 				Profile Image
 				<img
 					class="profile_photo_img"
@@ -159,28 +157,7 @@ class RegisterVolunteer extends Component {
 				/>
 				<input type="file" onChange={this.fileChangedHandler}/>
 				<br />
-				<div style={{ width: "80%" }} className="form-group">
-				Email
-				<input
-					onChange={this.onChangeInput}
-					type="text"
-					className="form-control"
-								name="email"
-					placeholder="email"
-				/>
-				<p className='error'>{this.state.error.email}</p>
-				</div>
-				<div style={{ width: "80%" }} className="form-group">
-				Password
-				<input
-					onChange={this.onChangeInput}
-					type="password"
-					className="form-control"
-								name="password"
-					placeholder="password"
-				/>
-				<p className='error'>{this.state.error.password}</p>
-				</div>
+				
 				<div style={{ width: "80%" }} className="form-group">
 				First Name
 				<input
@@ -224,6 +201,28 @@ class RegisterVolunteer extends Component {
 					placeholder="zipcode"
 				/>
 				<p className='error'>{this.state.error.zipcode}</p>
+				</div>
+				<div style={{ width: "80%" }} className="form-group">
+				Email
+				<input
+					onChange={this.onChangeInput}
+					type="text"
+					className="form-control"
+								name="email"
+					placeholder="email"
+				/>
+				<p className='error'>{this.state.error.email}</p>
+				</div>
+				<div style={{ width: "80%" }} className="form-group">
+				Password
+				<input
+					onChange={this.onChangeInput}
+					type="password"
+					className="form-control"
+								name="password"
+					placeholder="password"
+				/>
+				<p className='error'>{this.state.error.password}</p>
 				</div>
 				<div style={{ width: "80%" }} className="form-group">
 				Image of Food Handler Card

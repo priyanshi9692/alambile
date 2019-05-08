@@ -119,7 +119,7 @@ class RegisterRestaurant extends Component {
 			<div className="col-md-8 col-md-offset-5">
 
 			<form className="registerform" onSubmit={this.onSubmitProfile}>
-				<h1>Volunteer Registration</h1>
+				<h1>Restaurant Registration</h1>
 				Restaurant Image
 				<img
 					class="profile_photo_img"
