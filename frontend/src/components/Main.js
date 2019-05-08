@@ -11,6 +11,7 @@ import RegisterRestaurant from "./Other/RegisterRestaurant";
 import RegisterVolunteerExtra from "./Other/RegisterVolunteerExtra";
 import RegisterShelter from "./Other/RegisterShelter";
 import RegisterSuccess from "./Other/RegisterSuccess";
+// import RegisterShelter from "./Other/RegisterShelter";
 import Restaurant from "./Other/Dashboard/Restaurant";
 import Volunteer from "./Other/Dashboard/Volunteer";
 import Signin from "./Other/Signin";
@@ -40,6 +41,7 @@ class Main extends Component {
                 <Route path="/registervolunteerextra" component={RegisterVolunteerExtra}/>
                 <Route path="/registershelter" component={RegisterShelter}/>
                 <Route path="/registersuccess" component={RegisterSuccess}/>
+            
                 <Route path="/restaurant" component={Restaurant}/>
                 <Route path="/volunteer" component={Volunteer}/>
                 </Switch>

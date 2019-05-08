@@ -26,12 +26,19 @@ class RegisterVolunteer extends Component {
 
 	onSubmitProfile = (e) => {
 		e.preventDefault();
+<<<<<<< Updated upstream
 		if(Object.entries(this.validate()).length === 0) {
 			axios.post('/registervolunteer',this.state)
 				.then(res => {
 					console.log(res);
 				})
 			}
+=======
+		axios.post('/registervolunteer', this.state)
+			.then(res => {
+				console.log(res);
+			})
+>>>>>>> Stashed changes
 	};
 
   getBase64(file, cb) {
@@ -140,6 +147,7 @@ class RegisterVolunteer extends Component {
 
 	render() {
 		return (
+<<<<<<< Updated upstream
 		<div className="bigfrontreg">
 					<div className="row justify-content-md-center top-padding clearbg loginimage">
 							<img className="loginimage" id="special"  src={bgImage}/>
@@ -237,13 +245,104 @@ class RegisterVolunteer extends Component {
 					type="submit"
 				>
 					Register!
+=======
+			<div>
+				<div className="container col-md-8 col-md-offset-5">
+					<h3>Volunteer Registration</h3>
+					<img
+						class="profile_photo_img"
+						src="https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_pic_default.png-26-345032f7d91f49f2.png"
+						alt="Ankita Chikodi"
+						height="200"
+						width="200"
+					/>
+					<br />
+					<form className="registerform" onSubmit={this.onSubmitProfile}>
+						<div style={{ width: "80%" }} className="form-group">
+							Firstname
+				<input
+								onChange={this.onChangeInput}
+								type="text"
+								className="form-control"
+								name="firstname"
+								placeholder="Firstname"
+							/>
+						</div>
+
+						<div style={{ width: "80%" }} className="form-group">
+							Address
+				<input
+								onChange={this.onChangeInput}
+								type="text"
+								className="form-control"
+								name="address"
+								placeholder="address"
+							/>
+						</div>
+
+						<div style={{ width: "80%" }} className="form-group">
+							City
+				<input
+								onChange={this.onChangeInput}
+								type="text"
+								className="form-control"
+								name="city"
+								placeholder="city"
+							/>
+						</div>
+
+						<div style={{ width: "80%" }} className="form-group">
+							Zipcode
+				<input
+								onChange={this.onChangeInput}
+								type="text"
+								className="form-control"
+								name="zipcode"
+								placeholder="zipcode"
+							/>
+						</div>
+
+						<div style={{ width: "80%" }} className="form-group">
+							Email
+				<input
+								onChange={this.onChangeInput}
+								type="email"
+								className="form-control"
+								name="email"
+								placeholder="email"
+							/>
+						</div>
+
+						<div style={{ width: "80%" }} className="form-group">
+							Password
+				<input
+								onChange={this.onChangeInput}
+								type="password"
+								className="form-control"
+								name="password"
+								placeholder="password"
+							/>
+						</div>
+						{/* <div style={{ width: "80%" }} className="form-group">
+				Image of Food Handler Card
+                <br />
+                <input type="file" onChange={this.fileChangedHandler} />
+				</div> */}
+						<div style={{ width: "80%" }}>
+							<button
+								onClick={this.onSubmitProfile}
+								className="btn btn-success"
+								type="submit"
+							>
+								Register!
+>>>>>>> Stashed changes
 				</button>
+						</div>
+					</form>
 				</div>
-			</form>
 			</div>
-		</div>
 		)
-  }
+	}
 }
 
 export default RegisterVolunteer;

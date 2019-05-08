@@ -40,17 +40,8 @@ Collection tables:
     "zipcode" : 95126,
     "password" : "1234"
 }
-3. shelter_Homes(sign up page details)
-{
-    "firstname" : "Priyanshi Jajoo",
-    "shelterHomeName" : "Homeless Hostel",
-    "email" : "priyanshi.96@gmail.com",
-    "address" : "Apt 80, 1800 campbell",
-    "city" : "San Jose",
-    "zipcode" : 95126,
-    "password" : "1234"
-}
-4. volunteer (sign up page details)
+
+3. volunteer (sign up page details)
 {
     "firstname" : "Piyush Mantri",
     "email" : "piyusman@gmail.com",

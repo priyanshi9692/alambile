@@ -6,10 +6,7 @@ const app = express();
 
 
 //Imports to route
- const {getHomePage} = require('./routes/index');
- //const {getPaymentPage} = require('./routes/index');
  const {postRestaurant} = require('./routes/index');
- const {postShelterHomes} = require('./routes/index');
  const {postVolunteers} = require('./routes/index');
  const {getLogin} = require('./routes/index');
  const {postFoodDetails} = require('./routes/index');
@@ -30,12 +27,9 @@ app.use(fileUpload());
 
 
 // routes for our app
-app.get('/', getHomePage);
-//app.get('/payment', getPaymentPage);
 app.post('/login', getLogin);
-app.post('/restaurant', postRestaurant);
-app.post('/shelterHomes', postShelterHomes);
-app.post('/volunteers', postVolunteers);
+app.post('/registerrestaurant', postRestaurant);
+app.post('/registervolunteer', postVolunteers);
 app.post('/restaurantdetails',postFoodDetails);
 app.get('/Fooddetails',getFoodRequest);
 

@@ -27,13 +27,14 @@ var mailOptions = {
 };
 
 
-function savelogininfo(email,password){
+function savelogininfo(email,password, type){
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("Users");
     var loginInfo= {};
     loginInfo.username = email;
     loginInfo.password = password;
+    loginInfo.type = type;
     var myobj = loginInfo;
     dbo.collection("login").insertOne(myobj, function (err, res) {
       if (err) throw err;
@@ -94,14 +95,14 @@ module.exports = {
     console.log(req.body);
     var restaurantInfo = {};
     console.log(req.body.firstname);
-    restaurantInfo.firstname = req.body.firstname;
+    restaurantInfo.firstname = req.body.fullName;
     restaurantInfo.restaurantName = req.body.restaurantName;
     restaurantInfo.email = req.body.email;
     restaurantInfo.address = req.body.address;
     restaurantInfo.city = req.body.city;
     restaurantInfo.zipcode = req.body.zipcode;
     restaurantInfo.password = req.body.password;
-    savelogininfo(restaurantInfo.email,restaurantInfo.password);
+    savelogininfo(restaurantInfo.email,restaurantInfo.password,"restaurant");
     console.log(JSON.stringify(restaurantInfo));
 
     MongoClient.connect(url, function (err, db) {
@@ -129,46 +130,6 @@ module.exports = {
     });
     res.send('success');
   },
-//   postShelterHomes: (req, res) => {
-//     console.log(req.body);
-//     var shelterHomeInfo = {};
-//     console.log(req.body.firstname);
-//     shelterHomeInfo.firstname = req.body.firstname;
-//     shelterHomeInfo.shelterHomeName = req.body.shelterHomeName;
-//     shelterHomeInfo.email = req.body.email;
-//     shelterHomeInfo.address = req.body.address;
-//     shelterHomeInfo.city = req.body.city;
-//     shelterHomeInfo.zipcode = req.body.zipcode;
-//     shelterHomeInfo.password = req.body.password;
-   
-//     console.log(JSON.stringify(shelterHomeInfo));
-
-//     MongoClient.connect(url, function (err, db) {
-//       if (err) throw err;
-//       var dbo = db.db("Users");
-//       var myobj = shelterHomeInfo;
-//       dbo.collection("shelter_Homes").insertOne(myobj, function (err, res) {
-//         if (err) throw err;
-//         console.log("1 document inserted");
-//         //Mail code
-//         mailOptions.to = shelterHomeInfo.email;
-//         mailOptions.subject = "Congratulations!!!Registered as Customer";
-//         mailOptions.html = "Hi <b>" + shelterHomeInfo.firstname + "</b>, " + "<br /> <br /> Thank you for participating for our charitable organization. <br /><br /> Regards, <br /> CMPE-272";
-//         transporter.sendMail(mailOptions, function (error, info) {
-//           if (error) {
-//             console.log(error);
-//           } else {
-//             console.log('Sending success email ' + info.response);
-//           }
-//         });
-
-//         db.close();
-//       });
-//     });
-
-//     res.send('success');
-
-//   },
 
   postVolunteers: (req, res) => {
     console.log(req.body);
@@ -180,6 +141,7 @@ module.exports = {
     volunteersInfo.city = req.body.city;
     volunteersInfo.zipcode = req.body.zipcode;
     volunteersInfo.password = req.body.password;
+    savelogininfo(volunteersInfo.email,volunteersInfo.password,"volunteer");
     console.log(JSON.stringify(volunteersInfo));
 
     MongoClient.connect(url, function (err, db) {
@@ -229,18 +191,18 @@ module.exports = {
 //Food Details//
 postFoodDetails: (req, res) => {
   console.log(req.body);
-  var FoodDetailsInfo = {};
-  FoodDetailsInfo.Foodtype = req.body.Foodtype;
-  FoodDetailsInfo.Shelflife = req.body.Shelflife;
-  FoodDetailsInfo.Foodimage = req.body.Foodimage;
-  FoodDetailsInfo.Foodquantity= req.body.Foodquantity;
-  FoodDetailsInfo.requeststatus = req.body.requeststatus;
+  var foodDetailsInfo = {};
+  foodDetailsInfo.foodtype = req.body.foodtype;
+  foodDetailsInfo.shelflife = req.body.shelflife;
+  foodDetailsInfo.foodimage = req.body.foodimage;
+  foodDetailsInfo.foodquantity= req.body.foodquantity;
+  foodDetailsInfo.requeststatus = req.body.requeststatus;
   console.log(JSON.stringify(FoodDetailsInfo));
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("Users");
-    var myobj = FoodDetailsInfo;
+    var myobj = foodDetailsInfo;
     dbo.collection("restaurant").insertOne(myobj, function (err, res) {
       if (err) throw err;
       console.log("1 document inserted");
