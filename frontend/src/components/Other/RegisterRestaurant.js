@@ -131,30 +131,18 @@ class RegisterRestaurant extends Component {
 				<input type="file" onChange={this.fileChangedHandler}/>
 				<br />
 				<div style={{ width: "80%" }} className="form-group">
-<<<<<<< Updated upstream
 				Contact Email
-=======
-			
-			
-				<div style={{ width: "80%" }} className="form-group">
-				First Name
->>>>>>> Stashed changes
 				<input
 					onChange={this.onChangeInput}
 					type="text"
 					className="form-control"
-<<<<<<< Updated upstream
 								name="email"
 					placeholder="email"
-=======
-								name="fullName"
-					placeholder="full name"
->>>>>>> Stashed changes
 				/>
 				<p className='error'>{this.state.error.email}</p>
 				</div>
 				<div style={{ width: "80%" }} className="form-group">
-				Restaurant Name
+				Password
 				<input
 					onChange={this.onChangeInput}
 					type="text"
@@ -165,93 +153,46 @@ class RegisterRestaurant extends Component {
 				<p className='error'>{this.state.error.password}</p>
 				</div>
 				<div style={{ width: "80%" }} className="form-group">
-<<<<<<< Updated upstream
 				Restaurant Name
-=======
-				Restaurant address
->>>>>>> Stashed changes
 				<input
 					onChange={this.onChangeInput}
 					type="text"
 					className="form-control"
-<<<<<<< Updated upstream
 								name="firstname"
 					placeholder="first name"
-=======
-					name="address"
-					placeholder="address"
->>>>>>> Stashed changes
 				/>
 				<p className='error'>{this.state.error.firstname}</p>
 				</div>
 				<div style={{ width: "80%" }} className="form-group">
-<<<<<<< Updated upstream
 				Restaurant Address
-=======
-				City 
->>>>>>> Stashed changes
 				<input
 					onChange={this.onChangeInput}
 					type="text"
 					className="form-control"
-<<<<<<< Updated upstream
 					name="address"
 					placeholder="address"
-=======
-					name="city"
-					placeholder="city "
->>>>>>> Stashed changes
 				/>
 				<p className='error'>{this.state.error.address}</p>
 				</div>
 				<div style={{ width: "80%" }} className="form-group">
-<<<<<<< Updated upstream
 				City
-=======
-			 Zipcode
->>>>>>> Stashed changes
 				<input
 					onChange={this.onChangeInput}
 					type="text"
 					className="form-control"
-<<<<<<< Updated upstream
 					name="city"
 					placeholder="city"
-=======
-					name="zipcode"
-					placeholder="zipcode"
->>>>>>> Stashed changes
 				/>
 				<p className='error'>{this.state.error.city}</p>
 				</div>
-
 				<div style={{ width: "80%" }} className="form-group">
-<<<<<<< Updated upstream
 				Zip Code
-=======
-				Email
->>>>>>> Stashed changes
 				<input
 					onChange={this.onChangeInput}
-					type="email"
+					type="zipcode"
 					className="form-control"
-					name="email"
-					placeholder="email"
-				/>
-				</div>
-				<div style={{ width: "80%" }} className="form-group">
-				Password
-				<input
-					onChange={this.onChangeInput}
-					type="password"
-					className="form-control"
-<<<<<<< Updated upstream
-					name="zipcode"
+								name="zipcode"
 					placeholder="zipcode"
-=======
-								name="password"
-					placeholder="password"
->>>>>>> Stashed changes
 				/>
 				<p className='error'>{this.state.error.zipcode}</p>
 				</div>
@@ -264,7 +205,6 @@ class RegisterRestaurant extends Component {
 					Register!
 				</button>
 				</div>
-			</div>
 			</form>
 			</div>
 		</div>
