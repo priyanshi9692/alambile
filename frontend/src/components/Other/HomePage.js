@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import { Route, withRouter } from 'react-router-dom';
-import * as API from '../../api/API';
-import SignIn from "./SignIn2";
-import Message from "./Message";
 //import Welcome from "./Welcome";
 import Dashboard from "./Dashboard";
 import Map from "./Map";
@@ -11,6 +8,7 @@ import SignUp from "./SignUp2";
 import {Button} from "react-bootstrap";
 import bgImage from '../images/cover_image.PNG';
 import Header from "../Header";
+
 
 class HomePage extends Component {
 
@@ -22,78 +20,17 @@ class HomePage extends Component {
         dashboard:false
     };
 
-    handleSubmit = (userdata) => {
-        API.doLogin(userdata)
-            .then((status) => {
-                   if(status===201){
-                    console.log("after SignIn response");
-                    this.setState({
-                        isLoggedIn: true,
-                        message: "You have succesully registered..!!",
-                        username: userdata.username,
-                        dashboard:true
-                    });
-                    console.log("inside handle submit state");
-                    console.log(this.state);
-                    this.props.history.push("/dashboard");
-                }
-                else{
-
-                     console.log("after SignIn response");
-                    this.setState({
-                        isLoggedIn: false,
-                        message: "Wrong username and password..!!",
-                        username: userdata.username,
-                        dashboard:false
-
-                    });
-                    console.log("inside handle submit state for wrong username");
-                    console.log(this.state);
-                    this.props.history.push("/");
-
-                }
-                
-            }).catch((error)=> {
-                this.setState({
-                        isLoggedIn: false,
-                        message: "Error While logging in!!",
-                        username: userdata.username,
-                        Images:[]
-                    });  
-                this.props.history.push('"/');
-            });
-    };
-
 
     handleRegister = (userdata) => {
-        API.doRegister(userdata)
-            .then((status) => {
-                console.log("inside handleRegister");
-                if (status === 201) {
-                    console.log("after Register");
-                    this.setState({
-                        isLoggedIn: true,
-                        message: "You have registered .. SignIn to continue",
-                        username: userdata.username,
-                        
-                    });
-            
-                    this.props.history.push("/");
-                } else if (status === 401) {
-                    this.setState({
-                        isLoggedIn: false,
-                        message: "Wrong username or password. Try again..!!"
-                    });
-                }
-            });
-        if (userdata.type === "Restaurant") {
-
-        } else if (userdata.type === "Collector") {
-
-        } else if (userdata.type === "Collection") {
-
+        console.log("Register",userdata);
+        if (userdata === "restaurant") {
+            this.props.history.push('/registerrestaurant');
+        } else if (userdata === "volunteer") {
+            this.props.history.push('/registervolunteer');
+        } else if (userdata === "shelter") {
+            this.props.history.push('/registershelter');
         } else {
-            this.props.history.push(`/register?username=${userdata.username}`);
+            this.props.history.push('/');
         }
     };
    
@@ -125,12 +62,12 @@ class HomePage extends Component {
                     
                     <div className="col-md-6">          
                         <div className="col-md-10"> 
-                            <SignIn handleSubmit={this.handleSubmit}/>
+
                         </div>
             
                         <div className="col-md-10">
                         <Button bsStyle="primary" onClick={() => {
-                        this.props.history.push("/SignUp");
+                        this.handleRegister("");
                         }}>
                             Register
                         </Button>
