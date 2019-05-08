@@ -15,7 +15,7 @@ class Signin extends Component {
     state = {
         username: '',
         password: '',
-        images: [],
+        
         error: {},
     };
 
@@ -23,7 +23,7 @@ class Signin extends Component {
         this.setState({
             username: '',
             password: '',
-            images :[]
+            
         });
     }
 
@@ -35,8 +35,7 @@ class Signin extends Component {
                 user_email: this.state.username,
                 user_password: this.state.password
             }
-            axios.defaults.withCredentials = true;
-            axios.post('http://localhost:5000/login', data)
+            axios.post('/signin', data)
                 .then(response => {
                     console.log("Success, but get user authorization")
                 })
@@ -74,7 +73,7 @@ class Signin extends Component {
                             <input
                                 className="form-control bigloginfont"
                                 type="text"
-                                label="Username"
+                                label="username"
                                 placeholder="Enter Username"
                                 value={this.state.username}
                                 onChange={(event) => {
@@ -100,6 +99,18 @@ class Signin extends Component {
                                 }}
                             />
                             <p className='error'>{this.state.error.password}</p>
+                        </div>
+                        <div className="form-group">
+                            <select 
+                                value={this.state.type}
+                                onChange={(event) => {
+                                this.setState({
+                                    type: event.target.value
+                                });
+                            }}>
+                                <option value="volunteer">Volunteer</option>
+                                <option value="restaurant">Restaurant</option>
+                            </select>
                         </div>
                         <div className="form-group bigfontlogin">
                             <Button

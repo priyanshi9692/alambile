@@ -27,7 +27,7 @@ app.use(fileUpload());
 
 
 // routes for our app
-app.post('/login', getLogin);
+app.post('/signin', getLogin);
 app.post('/registerrestaurant', postRestaurant);
 app.post('/registervolunteer', postVolunteers);
 app.post('/restaurantdetails',postFoodDetails);

@@ -27,12 +27,12 @@ var mailOptions = {
 };
 
 
-function savelogininfo(email,password, type){
+function savelogininfo(username,password, type){
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("Users");
     var loginInfo= {};
-    loginInfo.username = email;
+    loginInfo.username = username;
     loginInfo.password = password;
     loginInfo.type = type;
     var myobj = loginInfo;
@@ -55,7 +55,7 @@ module.exports = {
   },
 
   getLogin: (req, res) => {
-    //console.log(req);
+    
     console.log(req.query);
     console.log(req.body);
     var password = req.body.user_password;
@@ -64,9 +64,13 @@ module.exports = {
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
       var dbo = db.db("Users");
-      var query = { username: username2 };
+      var query = { 
+        email: username2,
+        type: type
+      };
       console.log(query);
-      dbo.collection("login").find(query).toArray((err, items)=> {
+      if (type === "volunteer") {
+      dbo.collection("volunteer").find(query).toArray((err, items)=> {
         console.log(items);
         if(items != []){
         var returnString;
@@ -85,7 +89,29 @@ module.exports = {
           return res.send(returnString);
       }
       });
-    });
+    }
+    else{
+      dbo.collection("restaurant").find(query).toArray((err, items)=> {
+        console.log(items);
+        if(items != []){
+        var returnString;
+        if(password == items[0].password){
+          
+          returnString = "User Successfully logged in";
+          console.log(returnString);
+          res.send(returnString);
+          return;
+        } else {
+          returnString = "Incorrect password";
+          return res.send(returnString);
+        }
+      } else {
+        returnString = "Incorrect EmailId";
+          return res.send(returnString);
+      }
+      });
+    }
+  });
  
   },
 
@@ -95,7 +121,7 @@ module.exports = {
     console.log(req.body);
     var restaurantInfo = {};
     console.log(req.body.firstname);
-    restaurantInfo.firstname = req.body.fullName;
+    restaurantInfo.firstname = req.body.firstname;
     restaurantInfo.restaurantName = req.body.restaurantName;
     restaurantInfo.email = req.body.email;
     restaurantInfo.address = req.body.address;
@@ -113,10 +139,9 @@ module.exports = {
         if (err) throw err;
         console.log(res);
         console.log("1 document inserted");
-        //Mail code
         mailOptions.to = restaurantInfo.email + "; priyanshi.jajoo@sjsu.edu";
-        mailOptions.subject = "Congratulations!!!Registered as Customer";
-        mailOptions.html = "Hi <b>" + restaurantInfo.firstname + "</b>, " + "<br /> <br /> Thank you for participating for our charitable organization. <br /><br /> Regards, <br /> CMPE-272";
+        mailOptions.subject = "Congratulations!!!Registered as our Customer";
+        mailOptions.html = "Hi <b>" + restaurantInfo.firstname + "</b>, " + "<br /> <br /> Thank you for participating in our noble cause. <br /><br /> Regards, <br /> Alambile Team";
         transporter.sendMail(mailOptions, function (error, info) {
           if (error) {
             console.log(error);
@@ -135,13 +160,14 @@ module.exports = {
     console.log(req.body);
     var volunteersInfo = {};
     console.log(req.body.firstname);
+    volunteersInfo.profileimage = req.body.image;
     volunteersInfo.firstname = req.body.firstname;
     volunteersInfo.email = req.body.email;
     volunteersInfo.address = req.body.address;
     volunteersInfo.city = req.body.city;
     volunteersInfo.zipcode = req.body.zipcode;
     volunteersInfo.password = req.body.password;
-    savelogininfo(volunteersInfo.email,volunteersInfo.password,"volunteer");
+    savelogininfo(volunteersInfo.email,volunteersInfo.password);
     console.log(JSON.stringify(volunteersInfo));
 
     MongoClient.connect(url, function (err, db) {
@@ -151,25 +177,23 @@ module.exports = {
       dbo.collection("volunteer").insertOne(myobj, function (err, res) {
         if (err) throw err;
         console.log("1 document inserted");
-        //Mail code
-        // mailOptions.to = volunteersInfo.email;
-        // mailOptions.subject = "Volunteer Request!!!" ;
-        // mailOptions.html = "Hi <b>" + volunteersInfo.firstname + "</b>, "+ "<br /> <br /> Your profile is under review and will revert to you soon. <br /><br /> Regards, <br /> CMPE-272";
-        // transporter.sendMail(mailOptions, function(error, info){
-        //   if (error) {
-        //     console.log(error);
-        //   } else {
-        //     console.log('Sending success email ' + info.response);
-        //   }
+        mailOptions.to = volunteersInfo.email + "; priyanshi.jajoo@sjsu.edu";
+        mailOptions.subject = "Congratulations!!!Registered as our Customer";
+        mailOptions.html = "Hi <b>" + volunteersInfo.firstname + "</b>, " + "<br /> <br /> Thank you for participating in our noble cause. <br /><br /> Regards, <br /> Alambile Team";
+        transporter.sendMail(mailOptions, function (error, info) {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Sending success email ' + info.response);
+          }
+        });
       });
 
       db.close();
     });
     res.send('success');
   },
-  //restaurant dashboard//
   getFoodRequest: (req, res) => {
-    //console.log(req);
     console.log(req.query);
     console.log(req.body);
     var email = req.body.user_email;
@@ -188,7 +212,7 @@ module.exports = {
 
 },
 
-//Food Details//
+
 postFoodDetails: (req, res) => {
   console.log(req.body);
   var foodDetailsInfo = {};
