@@ -204,7 +204,7 @@ class RegisterVolunteer extends Component {
 					onChange={this.onChangeInput}
 					type="text"
 					className="form-control"
-								name="email"
+					name="email"
 					placeholder="email"
 				/>
 				<p className='error'>{this.state.error.email}</p>

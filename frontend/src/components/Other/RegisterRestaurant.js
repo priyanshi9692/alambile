@@ -125,35 +125,25 @@ class RegisterRestaurant extends Component {
 				<input type="file" onChange={this.fileChangedHandler}/>
 				<br />
 				<div style={{ width: "80%" }} className="form-group">
-				Contact Email
-				<input
-					onChange={this.onChangeInput}
-					type="text"
-					className="form-control"
-								name="email"
-					placeholder="email"
-				/>
-				<p className='error'>{this.state.error.email}</p>
-				</div>
-				<div style={{ width: "80%" }} className="form-group">
-				Password
-				<input
-					onChange={this.onChangeInput}
-					type="password"
-					className="form-control"
-					name="password"
-					placeholder="password"
-				/>
-				<p className='error'>{this.state.error.password}</p>
-				</div>
-				<div style={{ width: "80%" }} className="form-group">
-				Restaurant Name
+				First Name
 				<input
 					onChange={this.onChangeInput}
 					type="text"
 					className="form-control"
 								name="firstname"
 					placeholder="first name"
+				/>
+				<p className='error'>{this.state.error.firstname}</p>
+				</div>
+		
+				<div style={{ width: "80%" }} className="form-group">
+				Restaurant Name
+				<input
+					onChange={this.onChangeInput}
+					type="text"
+					className="form-control"
+								name="restaurantName"
+					placeholder="Subway/Morton The SteakHose"
 				/>
 				<p className='error'>{this.state.error.firstname}</p>
 				</div>
@@ -189,6 +179,29 @@ class RegisterRestaurant extends Component {
 					placeholder="zipcode"
 				/>
 				<p className='error'>{this.state.error.zipcode}</p>
+				</div>
+					<div style={{ width: "80%" }} className="form-group">
+					Contact Email
+					<input
+						onChange={this.onChangeInput}
+						type="text"
+						className="form-control"
+									name="email"
+						placeholder="email"
+					/>
+					<p className='error'>{this.state.error.email}</p>
+					</div>
+						
+				<div style={{ width: "80%" }} className="form-group">
+				Password
+				<input
+					onChange={this.onChangeInput}
+					type="password"
+					className="form-control"
+					name="password"
+					placeholder="password"
+				/>
+				<p className='error'>{this.state.error.password}</p>
 				</div>
 				<div style={{ width: "80%" }}>
 				<button

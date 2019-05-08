@@ -41,7 +41,7 @@ class RegisterSuccess extends Component {
 			<form className="registerform" onSubmit={this.onSubmitProfile}>
             <div class="alert alert-success" role="alert">
   <h4 class="alert-heading">Submission Complete</h4>
-  <p>Thank you for your submission. We will review your application as a volunteer and get back to you shortly!</p>
+  <p>Thank you for your submission. We are glad to have you onboard! </p>
   <hr/>
   <p class="mb-0">...</p>
 </div>
