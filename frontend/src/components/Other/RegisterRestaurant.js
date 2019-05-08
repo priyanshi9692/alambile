@@ -76,14 +76,8 @@ class RegisterRestaurant extends Component {
 	
   validate(){
 		const error = {};
-		if(!this.state.username){
-			error.username = 'Enter Username';
-		}
 		if(!this.state.firstname){
 			error.firstname = 'Enter First Name';
-		}
-		if(!this.state.familyName){
-			error.familyName = 'Enter Family Name';
 		}
 		if(!this.state.email){
 			error.email = 'Enter Email';
@@ -101,7 +95,7 @@ class RegisterRestaurant extends Component {
 		}
 		if(!this.state.password){
 			error.password = 'Enter Password';
-		}else if(!new RegExp("^(?=[a-zA-Z])(?=.*[0-9])(?=.*[#\$_%!@.~^:?()+&\/*-])(?=.*[A-Z])(?=.*[a-z])(?!.*[^a-zA-Z0-9#\$_%!@.~^:?()+&\/*-])(?!.*\s).{6,15}$").test(this.state.password)){
+		}else if(!new RegExp("^(?=[a-zA-Z])(?=.*[0-9])(?=.*[#\$_%!@.~^:?()+&\/*-])(?=.*[A-Z])(?=.*[a-z])(?!.*[^a-zA-Z0-9#\$_%!@.~^:?()+&\/*-])(?!.*\s).{3,15}$").test(this.state.password)){
 			error.password = 'Enter a Stronger Password';
 		}
 		this.setState({error: error});
@@ -145,10 +139,10 @@ class RegisterRestaurant extends Component {
 				Password
 				<input
 					onChange={this.onChangeInput}
-					type="text"
+					type="password"
 					className="form-control"
-					name="restaurantName"
-					placeholder="restaurant name"
+					name="password"
+					placeholder="password"
 				/>
 				<p className='error'>{this.state.error.password}</p>
 				</div>
