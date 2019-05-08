@@ -22,14 +22,19 @@ class Volunteer extends Component {
             {
                 name: 'The Salvation Army San Jose',
                 address: '359 N 4th St, San Jose, CA 95112',
-                contact: '(408) 282-1165'
+                contact: '(408) 282-1165',
+                lat: 37.3433354,
+                lng: -121.8919698,
             },
             {
                 name: 'Santa Maria Urban Ministry',
                 address: '778 Almaden Avenue, San Jose, CA 95110',
-                contact: '(408) 292-3314'
+                contact: '(408) 292-3314',
+                lat: 37.3227434,
+                lng: -121.8847125
             }
-        ]
+        ],
+        pickupstatus: false,
 
 	}
 
@@ -43,7 +48,17 @@ class Volunteer extends Component {
 			.then(res => {
 				console.log(res);
 			})
-	};
+    };
+    
+    renderTable() {
+        let returnVal = ''
+        if (!this.state.pickupstatus === true) {
+            this.state.banks.map((b) => {
+                returnVal = returnVal + b.name + <br/>
+            })
+        }
+        return returnVal
+    }
 
 	render() {
 		return (
@@ -61,9 +76,8 @@ class Volunteer extends Component {
 
                 </div>
                 <div className="col-md-6"> 
-                    <Link to={'/restaurant/create'} >Create New</Link> &nbsp;
-                    <Link to={'/restaurant/open'} >Open Requests</Link> &nbsp;
-                    <Link to={'/restaurant/closed'} >Closed Requests</Link> &nbsp;
+                    <Link to={'/volunteerstart'} >Open Requests</Link> &nbsp;
+                    <Link to={'/volunteer'} >Food Banks</Link> &nbsp;
                     <Link to={'/restaurant'} >History</Link> &nbsp;
                 </div>
                 <div className="col-md-3"></div>
@@ -72,7 +86,20 @@ class Volunteer extends Component {
             <div className="row">
                 <div className="col-md-1"></div>
                 <div className="col-md-3">
-                <Table striped bordered hover size="sm">
+                <h3>Food Banks</h3>
+                {this.state.banks.map((i) => (
+                    <React.Fragment key={i.name}>
+                        <ul>
+                            {/* <Link to={`/profileother/${i.followerID._id}`} onClick={() => window.location.refresh()}> */}
+                                <p>{i.name}</p>
+                                <p className="cred">{i.address}</p>
+                                <p className="cred">{i.contact}</p>
+
+                            <hr />
+                        </ul>
+                    </React.Fragment>
+                    ))}
+                {/* <Table striped bordered hover size="sm">
                     <thead>
                         <tr>
                         <th>#</th>
@@ -104,7 +131,7 @@ class Volunteer extends Component {
                         <td>@mdo</td>
                         </tr>
                     </tbody>
-                    </Table>
+                    </Table> */}
                 </div>
                 <div className="col-md-7 mapsize"> 
                     <Map banks={this.state.banks} />

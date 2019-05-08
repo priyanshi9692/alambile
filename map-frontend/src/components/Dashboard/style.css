@@ -6,3 +6,12 @@
     width: 600px;
     height: 400px;
 }
+
+.cred {
+    font-size: 12px;
+    color: #949494;
+}
+
+.nicepadding {
+    margin: 10px;
+}
