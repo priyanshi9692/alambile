@@ -6,9 +6,9 @@ import {Link} from 'react-router-dom';
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup'
 
-import foodimage from '../../images/food1.jpg'
+import foodimage from '../../images/food2.jpg'
 
-class OpenRequest extends Component {
+class ClosedRequest extends Component {
 
 	state = {
 				open: this.props.open,
@@ -45,7 +45,7 @@ class OpenRequest extends Component {
 								<Card.Title>Burger Request</Card.Title>
 								<Card.Text>
                                     <ListGroup>
-                                    <ListGroup.Item disabled>Status: <span class="badge badge-pill badge-warning">Open</span></ListGroup.Item>
+                                    <ListGroup.Item disabled>Status: <span class="badge badge-pill badge-success pickstatus">Success</span></ListGroup.Item>
                                     <ListGroup.Item disabled>Full untouched cheeseburger, still warm, can be stored for days</ListGroup.Item>
                                     <ListGroup.Item>May 8 2019</ListGroup.Item>
                                     </ListGroup>
@@ -61,4 +61,4 @@ class OpenRequest extends Component {
   }
 }
 
-export default OpenRequest;
+export default ClosedRequest;

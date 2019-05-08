@@ -10,8 +10,10 @@ import RegisterVolunteer from "./Other/RegisterVolunteer";
 import RegisterRestaurant from "./Other/RegisterRestaurant";
 import RegisterVolunteerExtra from "./Other/RegisterVolunteerExtra";
 import RegisterShelter from "./Other/RegisterShelter";
+import RegisterSuccess from "./Other/RegisterSuccess";
 import Restaurant from "./Other/Dashboard/Restaurant";
 import Volunteer from "./Other/Dashboard/Volunteer";
+import Signin from "./Other/Signin";
 
 import './style.css';
 
@@ -30,12 +32,14 @@ class Main extends Component {
                 
                 <Route path="/updatePhoto" component={UpdatePhoto}/>
                 <Route exact path="/dashboard" component={Dashboard}/>
+                <Route path="/signin" component={Signin}/>
                 <Route path="/map" component={DisplayMap}/>
                 <Route path="/search" component={Search}/>
                 <Route path="/registervolunteer" component={RegisterVolunteer}/>
                 <Route path="/registerrestaurant" component={RegisterRestaurant}/>
                 <Route path="/registervolunteerextra" component={RegisterVolunteerExtra}/>
                 <Route path="/registershelter" component={RegisterShelter}/>
+                <Route path="/registersuccess" component={RegisterSuccess}/>
                 <Route path="/restaurant" component={Restaurant}/>
                 <Route path="/volunteer" component={Volunteer}/>
                 </Switch>

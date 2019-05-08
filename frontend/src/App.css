@@ -218,3 +218,7 @@ html {
 	background-image: -webkit-linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url('./components/images/frontpage.jpeg');
 	background-position: 0px 0px, 50% 50%;
 }
+
+html {
+  font-size: 12px;
+}

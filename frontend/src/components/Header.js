@@ -1,18 +1,16 @@
 // Header.js
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import './Other/style.css';
 
 export default class Header extends Component {
     render(){
         return (
-            <header className="main-header">
+            <header className="main-header bigfontlogin">
                 <a href="#" className="logo">
-                    <span className="logo-lg"><Link to="/home"><b>Alambile</b></Link></span>
+                    <span className="logo-lg"><Link to="/home" className="titlelink"><b>Alambile</b></Link></span>
                 </a>
-                <nav className="navbar navbar-static-top">
-                    <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">
-                        <span className="sr-only">Toggle navigation</span>
-                    </a>
+                <nav className="navbar header navbar-static-top">
                     <div className="navbar-custom-menu">
                         <ul className="nav navbar-nav">
                    {/*}       <li class="active"><Link to="/home">Home</Link></li>  {*/} 

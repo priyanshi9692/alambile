@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from "axios";
 import "./style.css";
 
+import bgImage from '../images/bgimg2.jpeg';
+
 class RegisterVolunteerExtra extends Component {
 
 	state = {
@@ -19,6 +21,7 @@ class RegisterVolunteerExtra extends Component {
 
 	onSubmitProfile = (e) => {
 		e.preventDefault();
+		this.props.history.push("/registersuccess");
 		axios.post('/registervolunteerextra',this.state)
 			.then(res => {
 				console.log(res);
@@ -28,17 +31,23 @@ class RegisterVolunteerExtra extends Component {
 	render() {
 		return (
 		<div>
-			<div className="container col-md-8 col-md-offset-5">
-			<h3>Volunteer Questionaire</h3>
+			<div className="bigfrontreg">
+		            <div className="row justify-content-md-center top-padding clearbg loginimage">
+                <img className="loginimage" id="special"  src={bgImage}/>
+                    
+                <hr/>
+            </div>
+			<div className="col-md-8 col-md-offset-5">
+			<form className="registerform" onSubmit={this.onSubmitProfile}>
+						<h3>Volunteer Questionaire</h3>
 			<img
 				class="profile_photo_img"
 				src="https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_pic_default.png-26-345032f7d91f49f2.png"
-				alt="Ankita Chikodi"
+				alt="Prof Image"
 				height="200"
 				width="200"
 			/>
 			<br />
-			<form className="registerform" onSubmit={this.onSubmitProfile}>
             <div class="alert alert-danger" role="alert">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
             <span class="sr-only">Error:</span>
@@ -59,16 +68,6 @@ class RegisterVolunteerExtra extends Component {
 				<div style={{ width: "80%" }} className="form-group">
 				What are you other hobbies and/or interests?
                 <textarea style={{ width: "120%", height: "200%" }} onChange={this.onChangeInput}/>
-				</div>
-				<div style={{ width: "30%" }} className="form-group">
-				Credentials
-				<input
-					onChange={this.onChangeInput}
-					type="text"
-					className="form-control"
-					name="credentials"
-					placeholder="credentials"
-				/>
 				</div>
                 <div style={{ width: "30%" }} className="form-group">
 				Own a car?
@@ -96,6 +95,7 @@ class RegisterVolunteerExtra extends Component {
 				</div>
 			</form>
 			</div>
+		</div>
 		</div>
 		)
   }
