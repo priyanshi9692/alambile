@@ -129,46 +129,46 @@ module.exports = {
     });
     res.send('success');
   },
-  postShelterHomes: (req, res) => {
-    console.log(req.body);
-    var shelterHomeInfo = {};
-    console.log(req.body.firstname);
-    shelterHomeInfo.firstname = req.body.firstname;
-    shelterHomeInfo.shelterHomeName = req.body.shelterHomeName;
-    shelterHomeInfo.email = req.body.email;
-    shelterHomeInfo.address = req.body.address;
-    shelterHomeInfo.city = req.body.city;
-    shelterHomeInfo.zipcode = req.body.zipcode;
-    shelterHomeInfo.password = req.body.password;
+//   postShelterHomes: (req, res) => {
+//     console.log(req.body);
+//     var shelterHomeInfo = {};
+//     console.log(req.body.firstname);
+//     shelterHomeInfo.firstname = req.body.firstname;
+//     shelterHomeInfo.shelterHomeName = req.body.shelterHomeName;
+//     shelterHomeInfo.email = req.body.email;
+//     shelterHomeInfo.address = req.body.address;
+//     shelterHomeInfo.city = req.body.city;
+//     shelterHomeInfo.zipcode = req.body.zipcode;
+//     shelterHomeInfo.password = req.body.password;
    
-    console.log(JSON.stringify(shelterHomeInfo));
+//     console.log(JSON.stringify(shelterHomeInfo));
 
-    MongoClient.connect(url, function (err, db) {
-      if (err) throw err;
-      var dbo = db.db("Users");
-      var myobj = shelterHomeInfo;
-      dbo.collection("shelter_Homes").insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        console.log("1 document inserted");
-        //Mail code
-        mailOptions.to = shelterHomeInfo.email;
-        mailOptions.subject = "Congratulations!!!Registered as Customer";
-        mailOptions.html = "Hi <b>" + shelterHomeInfo.firstname + "</b>, " + "<br /> <br /> Thank you for participating for our charitable organization. <br /><br /> Regards, <br /> CMPE-272";
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log(error);
-          } else {
-            console.log('Sending success email ' + info.response);
-          }
-        });
+//     MongoClient.connect(url, function (err, db) {
+//       if (err) throw err;
+//       var dbo = db.db("Users");
+//       var myobj = shelterHomeInfo;
+//       dbo.collection("shelter_Homes").insertOne(myobj, function (err, res) {
+//         if (err) throw err;
+//         console.log("1 document inserted");
+//         //Mail code
+//         mailOptions.to = shelterHomeInfo.email;
+//         mailOptions.subject = "Congratulations!!!Registered as Customer";
+//         mailOptions.html = "Hi <b>" + shelterHomeInfo.firstname + "</b>, " + "<br /> <br /> Thank you for participating for our charitable organization. <br /><br /> Regards, <br /> CMPE-272";
+//         transporter.sendMail(mailOptions, function (error, info) {
+//           if (error) {
+//             console.log(error);
+//           } else {
+//             console.log('Sending success email ' + info.response);
+//           }
+//         });
 
-        db.close();
-      });
-    });
+//         db.close();
+//       });
+//     });
 
-    res.send('success');
+//     res.send('success');
 
-  },
+//   },
 
   postVolunteers: (req, res) => {
     console.log(req.body);
