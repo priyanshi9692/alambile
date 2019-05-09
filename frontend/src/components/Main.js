@@ -16,6 +16,7 @@ import test from "./Other/test";
 import Restaurant from "./Other/Dashboard/Restaurant";
 import Volunteer from "./Other/Dashboard/Volunteer";
 import Signin from "./Other/Signin";
+import Extra from "./extra";
 
 import './style.css';
 
@@ -45,6 +46,7 @@ class Main extends Component {
                 <Route path="/test" component={test}/>
                 <Route path="/restaurant" component={Restaurant}/>
                 <Route path="/volunteer" component={Volunteer}/>
+                <Route path="/extra" component={Extra}/>
                 </Switch>
                
               

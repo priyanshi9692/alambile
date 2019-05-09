@@ -23,14 +23,13 @@ class RegisterRestaurant extends Component {
 
 	onSubmitProfile = (e) => {
 		e.preventDefault();
-		this.props.history.push("/registersuccess");
 		if(Object.entries(this.validate()).length === 0) {
 			axios.post('/registerrestaurant',this.state)
 				.then(res => {
 					console.log(res);
 				})
 			}
-			this.props.history.push("/registersuccess");
+			this.props.history.push("/extra");
 	};
 
   getBase64(file, cb) {
