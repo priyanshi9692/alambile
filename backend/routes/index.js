@@ -133,7 +133,7 @@ module.exports = {
         db.close();
       });
     });
-    res.send('success');
+    return res.send('success');
   },
 
   postVolunteers: (req, res) => {
@@ -171,7 +171,7 @@ module.exports = {
 
       db.close();
     });
-    res.send('success');
+   return res.send('success');
   },
   getFoodDetails: (req, res) => {
    

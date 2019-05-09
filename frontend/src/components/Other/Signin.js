@@ -45,11 +45,13 @@ class Signin extends Component {
                         alert("Success");
                         if(data.type === "restaurants"){
                             localStorage.setItem("email",this.state.username);
-                            
+
                             window.location.href='http://localhost:3000/restaurant'
                         }
                         else{
-
+                            localStorage.setItem("email",this.state.username);
+                            
+                            window.location.href='http://localhost:3000/volunteer'
                         }
                     }
                     else if(response.data ==="Incorrect EmailId")
