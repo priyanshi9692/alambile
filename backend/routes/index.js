@@ -173,22 +173,18 @@ module.exports = {
     });
     res.send('success');
   },
-  getFoodRequest: (req, res) => {
-    console.log(req.query);
-    console.log(req.body);
-    var email = req.body.user_email;
+  getFoodDetails: (req, res) => {
+   
    
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
       var dbo = db.db("Users");
-      var query= {username:email} ;
-      console.log(query);
-      dbo.collection("restaurant").find(query).toArray((err, items)=> {
+     
+      dbo.collection("foodDetails").find({}).toArray((err, items)=> {
       console.log(items);
+      res.send(JSON.stringify(items));
       });
     });
-
-  res.send('success');
 
 },
 
@@ -202,26 +198,27 @@ postFoodDetails: (req, res) => {
   foodDetailsInfo.foodquantity= req.body.quantity;
   foodDetailsInfo.requeststatus = req.body.status;
   foodDetailsInfo.description = req.body.description;
+  foodDetailsInfo.email = req.body.email;
   console.log(JSON.stringify(foodDetailsInfo));
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("Users");
     var myobj = foodDetailsInfo;
-    dbo.collection("foodDetails").insertOne(myobj, function (err, res) {
+    dbo.collection("foodDetails").insertOne(myobj, function (err, results) {
       if (err){
         console.log(err);
         return res.send("failed");
-        
-        
-      } 
+     } else{
       console.log("1 document inserted");
       return res.send("success");
+     }
+      
       });
 
     db.close();
   });
-  return res.send('success');
+  
 },
 postVolunteerDashboard: (req, res)=>{
   console.log(req.body);

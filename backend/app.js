@@ -11,7 +11,7 @@ const app = express();
  const {postVolunteers} = require('./routes/index');
  const {getLogin} = require('./routes/index');
  const {postFoodDetails} = require('./routes/index');
- const {getFoodRequest} = require('./routes/index');
+ const {getFoodDetails} = require('./routes/index');
  const{postVolunteerDashboard}=require('./routes/index');
 
 /* Set up values */
@@ -33,7 +33,7 @@ app.post('/signin', getLogin);
 app.post('/registerrestaurant', postRestaurant);
 app.post('/registervolunteer', postVolunteers);
 app.post('/restaurantdetails',postFoodDetails);
-app.get('/Fooddetails',getFoodRequest);
+app.get('/fooddetails',getFoodDetails);
 app.post('/registervolunteerextra',postVolunteerDashboard);
 
 

@@ -20,6 +20,7 @@ class NewRequest extends Component {
         type: '',
         image: "https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_pic_default.png-26-345032f7d91f49f2.png",
         status: 'ready',
+        email:localStorage.getItem("email"),
 	}
 
 	onChangeInput = (e) => {
@@ -28,7 +29,7 @@ class NewRequest extends Component {
 
 	onSubmitProfile = (e) => {
     e.preventDefault();
-
+console.log(localStorage.getItem("email"));
 		axios.post('/restaurantdetails',this.state)
 			.then(res => {
         console.log(res);
