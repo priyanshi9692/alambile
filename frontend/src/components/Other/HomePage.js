@@ -100,18 +100,22 @@ class HomePage extends Component {
         {/* <Route exact path="/updateprofile" render={() => (
      <UpdateProfile {...this.state}/>
      )}/> */} 
-    <div className="row justify-content-md-center ">
-        <div className="col-md-4 col-md-offset-1">
-        <img id="special" className="imagesize" src={infoimg1}/>
-            
-        <img id="special"  className="imagesize" src={infoimg3}/>      
-    </div>  
-        <div className="col-md-6 col-md-offset-1">
-        <img id="special"  className="imagesize2" src={infoimg2}/>
-            
+    <div className="row justify-content-md-center bgwhite"> 
+        <div className="row justify-content-md-center nicepadding">
+            <div className="col-md-12extra-padding fontdetails">
+                <div className="col-md-2"></div>
+                <div className="col-md-6 col-md-offset-1 centertext">
+                <h3><strong>What Alambile Means</strong></h3>
+                <p>‘Alambile’ in Zulu means ‘not hungry’.</p>
+                <h3><strong>Did you know ?</strong></h3>
+                <p>According to the Natural Resources Defense Council (NRDC) America wastes 40% of its food. This food could have been fed to 25 million Americans.</p>
+                <h3><strong>What’s our Mission?</strong></h3>
+                <p>Our mission to feed lesser privileged children and adults in shelter homes across America. We make it possible by collecting surplus food prepared in restaurants and offering it to all nearby shelters. We involve passionate volunteers who can sign up for our cause !</p>
+                </ div>
+            </div>
         </div>
-            
-    </div>   
+        <hr/>
+    </div>
 
     <section class="jumbotron text-center">
         <div class="container">
