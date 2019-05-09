@@ -33,7 +33,7 @@ class RegisterShelter extends Component {
 			<img
 				class="profile_photo_img"
 				src="https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_pic_default.png-26-345032f7d91f49f2.png"
-				alt="Ankita Chikodi"
+				alt="prof pic"
 				height="200"
 				width="200"
 			/>
