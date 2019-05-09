@@ -50,7 +50,7 @@ class Restaurant extends Component {
             <div className="row">
             <div className="col-md-3"></div>
             <div className="col-md-6"> 
-                <Link to={'/restaurant/create'} >Create New</Link> &nbsp;
+                <Link to={'/restaurant'} >Create New</Link> &nbsp;
                 <Link to={'/restaurant/open'} >Open Requests</Link> &nbsp;
                 <Link to={'/restaurant/closed'} >Closed Requests</Link> &nbsp;
                 <Link to={'/restaurant'} >History</Link> &nbsp;
@@ -61,7 +61,7 @@ class Restaurant extends Component {
             <div className="row">
             <div className="col-md-1"></div>
             <div className="col-md-9"> 
-                <Route path="/restaurant/create" render={(props) => <NewRequest {...props} open={this.state.open} />} />
+                <Route exact path="/restaurant" render={(props) => <NewRequest {...props} open={this.state.open} />} />
                 <Route path="/restaurant/open" render={(props) => <OpenRequest {...props} open={this.state.open} />} />
                 <Route path="/restaurant/closed" render={(props) => <ClosedRequest {...props} open={this.state.open} />} />
                 <Route path="/restaurant/history" render={(props) => <NewRequest {...props} open={this.state.open} />} />
