@@ -1,7 +1,6 @@
-
 var request = require('request');
+// import {PythonShell} from 'python-shell'; 
 var mongo = require('mongodb');
-
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
@@ -55,65 +54,46 @@ module.exports = {
   },
 
   getLogin: (req, res) => {
-    
+    console.log("I am in login method");
     console.log(req.query);
     console.log(req.body);
     var password = req.body.user_password;
     var username2 = req.body.user_email;
+    var type=req.body.type;
    
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
       var dbo = db.db("Users");
       var query = { 
-        email: username2,
-        type: type
+        email: username2
       };
       console.log(query);
-      if (type === "volunteer") {
-      dbo.collection("volunteer").find(query).toArray((err, items)=> {
+      dbo.collection(type).find(query).toArray((err, items)=> {
         console.log(items);
-        if(items != []){
+        console.log(items.length);
+        if(items != [] && items.length>0){
         var returnString;
-        if(password == items[0].password){
+        if(password === items[0].password){
           
-          returnString = "User Successfully logged in";
+          returnString = "User Successfully login!!";
+          // PythonShell.run('my_script.py', null, function (err) {   
+          // if (err) throw err;   console.log('finished'); });
           console.log(returnString);
           res.send(returnString);
           return;
         } else {
           returnString = "Incorrect password";
-          return res.send(returnString);
-        }
-      } else {
-        returnString = "Incorrect EmailId";
-          return res.send(returnString);
-      }
-      });
-    }
-    else{
-      dbo.collection("restaurant").find(query).toArray((err, items)=> {
-        console.log(items);
-        if(items != []){
-        var returnString;
-        if(password == items[0].password){
-          
-          returnString = "User Successfully logged in";
           console.log(returnString);
-          res.send(returnString);
-          return;
-        } else {
-          returnString = "Incorrect password";
           return res.send(returnString);
         }
       } else {
         returnString = "Incorrect EmailId";
+        console.log(returnString);
           return res.send(returnString);
       }
       });
-    }
-  });
- 
-  },
+    });
+},
 
 
   //refer
@@ -167,7 +147,7 @@ module.exports = {
     volunteersInfo.city = req.body.city;
     volunteersInfo.zipcode = req.body.zipcode;
     volunteersInfo.password = req.body.password;
-    savelogininfo(volunteersInfo.email,volunteersInfo.password);
+    savelogininfo(volunteersInfo.email,volunteersInfo.password,"volunteer");
     console.log(JSON.stringify(volunteersInfo));
 
     MongoClient.connect(url, function (err, db) {
@@ -216,18 +196,48 @@ module.exports = {
 postFoodDetails: (req, res) => {
   console.log(req.body);
   var foodDetailsInfo = {};
-  foodDetailsInfo.foodtype = req.body.foodtype;
+  foodDetailsInfo.foodtype = req.body.type;
   foodDetailsInfo.shelflife = req.body.shelflife;
-  foodDetailsInfo.foodimage = req.body.foodimage;
-  foodDetailsInfo.foodquantity= req.body.foodquantity;
-  foodDetailsInfo.requeststatus = req.body.requeststatus;
-  console.log(JSON.stringify(FoodDetailsInfo));
+  foodDetailsInfo.foodimage = req.body.image;
+  foodDetailsInfo.foodquantity= req.body.quantity;
+  foodDetailsInfo.requeststatus = req.body.status;
+  foodDetailsInfo.description = req.body.description;
+  console.log(JSON.stringify(foodDetailsInfo));
 
   MongoClient.connect(url, function (err, db) {
     if (err) throw err;
     var dbo = db.db("Users");
     var myobj = foodDetailsInfo;
-    dbo.collection("restaurant").insertOne(myobj, function (err, res) {
+    dbo.collection("foodDetails").insertOne(myobj, function (err, res) {
+      if (err){
+        console.log(err);
+        return res.send("failed");
+        
+        
+      } 
+      console.log("1 document inserted");
+      return res.send("success");
+      });
+
+    db.close();
+  });
+  return res.send('success');
+},
+postVolunteerDashboard: (req, res)=>{
+  console.log(req.body);
+  var volunteerDashboardInfo={};
+  volunteerDashboardInfo.why=req.body.why;
+  volunteerDashboardInfo.experience=req.body.experience;
+  volunteerDashboardInfo.certification=req.body.certification;
+  volunteerDashboardInfo.hobbies=req.body.hobbies;
+  volunteerDashboardInfo.vehicle=req.body.vehicle;
+  console.log(JSON.stringify(FoodDetailsInfo));
+
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db("Users");
+    var myobj = volunteerDashboardInfo;
+    dbo.collection("volunteer data ").insertOne(myobj, function (err, res) {
       if (err) throw err;
       console.log("1 document inserted");
       });
@@ -235,7 +245,11 @@ postFoodDetails: (req, res) => {
     db.close();
   });
   res.send('success');
+
+
 }
 
 
 }
+  
+

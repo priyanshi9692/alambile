@@ -15,14 +15,15 @@ class Signin extends Component {
     state = {
         username: '',
         password: '',
-        
-        error: {},
+        type:'',
+        error: {}
     };
 
     componentWillMount(){
         this.setState({
             username: '',
             password: '',
+            type:''
             
         });
     }
@@ -33,10 +34,31 @@ class Signin extends Component {
             let data = {};
             data = {
                 user_email: this.state.username,
-                user_password: this.state.password
+                user_password: this.state.password,
+                type:this.state.type
             }
+            console.log(data);
             axios.post('/signin', data)
                 .then(response => {
+                    console.log(response);
+                    if(response.data === "User Successfully login!!"){
+                        alert("Success");
+                        if(data.type === "restaurants"){
+                            localStorage.setItem("email",this.state.username);
+                            
+                            window.location.href='http://localhost:3000/restaurant'
+                        }
+                        else{
+
+                        }
+                    }
+                    else if(response.data ==="Incorrect EmailId")
+                    {
+                        alert("Incorrect EmailId");
+                    }
+                    else{
+                        alert("Incorrect Password");
+                    }
                     console.log("Success, but get user authorization")
                 })
         }
@@ -70,6 +92,7 @@ class Signin extends Component {
                             <h1 className="bigfontlogin">Login</h1>
                         </div>
                         <div className="form-group">
+                        
                             <input
                                 className="form-control bigloginfont"
                                 type="text"
@@ -86,6 +109,7 @@ class Signin extends Component {
                         </div>
 
                         <div className="form-group">
+                      
                             <input
                                 className="form-control bigloginfont"
                                 type="password"
@@ -101,6 +125,7 @@ class Signin extends Component {
                             <p className='error'>{this.state.error.password}</p>
                         </div>
                         <div className="form-group">
+                        
                             <select 
                                 value={this.state.type}
                                 onChange={(event) => {
@@ -108,8 +133,9 @@ class Signin extends Component {
                                     type: event.target.value
                                 });
                             }}>
-                                <option value="volunteer">Volunteer</option>
-                                <option value="restaurant">Restaurant</option>
+                            <option value="" > Select Role</option>
+                                <option value="volunteer" > Volunteer</option>
+                                <option value="restaurants">Restaurant</option>
                             </select>
                         </div>
                         <div className="form-group bigfontlogin">

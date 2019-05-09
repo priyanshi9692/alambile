@@ -15,10 +15,11 @@ class NewRequest extends Component {
 	state = {
         open: this.props.open,
         description: '',
-        weight: '',
+        shelflife:'',
+        quantity: '',
         type: '',
         image: "https://qsf.fs.quoracdn.net/-3-images.new_grid.profile_pic_default.png-26-345032f7d91f49f2.png",
-        status: '',
+        status: 'ready',
 	}
 
 	onChangeInput = (e) => {
@@ -26,11 +27,18 @@ class NewRequest extends Component {
 	}
 
 	onSubmitProfile = (e) => {
-		e.preventDefault();
-		// axios.post('/registerrestaurant',this.state)
-		// 	.then(res => {
-		// 		console.log(res);
-		// 	})
+    e.preventDefault();
+
+		axios.post('/restaurantdetails',this.state)
+			.then(res => {
+        console.log(res);
+        if(res.data== "success"){
+          alert("Successfully saved details!");
+        }
+        else{
+          alert("something went wrong, please try again!");
+        }
+			})
     };
     
     getBase64(file, cb) {
@@ -161,10 +169,10 @@ class NewRequest extends Component {
 				Shelf Life
                     <select
                         className="form-control"
-                        value={this.state.type}
+                        value={this.state.shelflife}
                         onChange={(event) => {
                             this.setState({
-                                type: event.target.value
+                              shelflife: event.target.value
                             });
                         }}
                     >

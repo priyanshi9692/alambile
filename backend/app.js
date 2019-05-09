@@ -5,12 +5,14 @@ const path = require('path');
 const app = express();
 
 
+
 //Imports to route
  const {postRestaurant} = require('./routes/index');
  const {postVolunteers} = require('./routes/index');
  const {getLogin} = require('./routes/index');
  const {postFoodDetails} = require('./routes/index');
  const {getFoodRequest} = require('./routes/index');
+ const{postVolunteerDashboard}=require('./routes/index');
 
 /* Set up values */
 const port = 3001;
@@ -32,6 +34,8 @@ app.post('/registerrestaurant', postRestaurant);
 app.post('/registervolunteer', postVolunteers);
 app.post('/restaurantdetails',postFoodDetails);
 app.get('/Fooddetails',getFoodRequest);
+app.post('/registervolunteerextra',postVolunteerDashboard);
+
 
 
 

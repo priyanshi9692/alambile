@@ -53,24 +53,24 @@ class RegisterVolunteerExtra extends Component {
             <span class="sr-only">Error:</span>
             As you are a new volunteer, we would like to know more about you before we proceed!
             </div>
-				<div style={{ width: "80%" }} className="form-group">
+				<div style={{ width: "80%" }} className="form-group" name="why">
 				Why do you want to be a volunteer?
                 <textarea style={{ width: "120%", height: "200%" }} onChange={this.onChangeInput}/>
 				</div>
-				<div style={{ width: "80%" }} className="form-group">
-				Hve you had previous volunteering experience?
+				<div style={{ width: "80%" }} className="form-group" name="experience">
+				Have you had previous volunteering experience?
                 <textarea style={{ width: "120%", height: "200%" }} onChange={this.onChangeInput}/>
 				</div>	
-				<div style={{ width: "80%" }} className="form-group">
+				<div style={{ width: "80%" }} className="form-group" name="certification">
 				Are you a certified food handler?
                 <textarea style={{ width: "120%", height: "200%" }} onChange={this.onChangeInput}/>
 				</div>
-				<div style={{ width: "80%" }} className="form-group">
+				<div style={{ width: "80%" }} className="form-group" name="hobbies">
 				What are you other hobbies and/or interests?
                 <textarea style={{ width: "120%", height: "200%" }} onChange={this.onChangeInput}/>
 				</div>
-                <div style={{ width: "30%" }} className="form-group">
-				Own a car?
+                <div style={{ width: "30%" }} className="form-group" name="vehicle">
+				Own a Vehicle?
 				<select
                         className="form-control"
                         value={this.state.type}
