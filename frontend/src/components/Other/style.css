@@ -103,3 +103,15 @@
   color: red;
   font-size: 0.8em;
 }
+
+.nicepadding {
+  margin: 10px;
+}
+
+.centertext {
+  text-align: center;
+}
+
+.lefttext {
+  text-align: left;
+}

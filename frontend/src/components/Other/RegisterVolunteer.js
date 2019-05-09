@@ -31,7 +31,7 @@ class RegisterVolunteer extends Component {
 					console.log(res);
 				})
 			}
-			this.props.history.push("/registersuccess");
+			this.props.history.push("/registervolunteerextra");
 	};
 
   getBase64(file, cb) {

@@ -9,6 +9,8 @@ import CardGroup from 'react-bootstrap/Card'
 import 'bootstrap/dist/css/bootstrap.css';
 import newimage1 from '../../images/bgimg3.jpeg';
 import newimage2 from '../../images/holder.PNG';
+import newimage3 from '../../images/qrcode.jpeg';
+import newimage4 from '../../images/finished.jpg';
 
 class NewRequest extends Component {
 
@@ -81,9 +83,9 @@ class NewRequest extends Component {
   <Card>
     <Card.Img variant="top" src={newimage1} />
     <Card.Body>
-      <Card.Title>Step 1</Card.Title>
+      <Card.Title><h1>Step 1</h1></Card.Title>
       <Card.Text>
-        Inspect food and ....
+        Before you donate your food, inspect your food and make sure that it is packaged securely for our volunteers. Then, take an image and upload so that volunteer and food bank know what they are about to receive
       </Card.Text>
     </Card.Body>
     <Card.Footer>
@@ -91,11 +93,11 @@ class NewRequest extends Component {
     </Card.Footer>
   </Card>
   <Card>
-    <Card.Img variant="top" src={newimage2} />
+    <Card.Img variant="top" src={newimage3} />
     <Card.Body>
-      <Card.Title>Step 2</Card.Title>
+      <Card.Title><h1>Step 2</h1></Card.Title>
       <Card.Text>
-        Fill out form, and take picture....
+        Fill out the rest of the form and request for the pickup. When a volunteer arrives to pickup your request, please ask to take the QR code given to the volunteer. This will authenticate that the correct volunteer has shown up.
       </Card.Text>
     </Card.Body>
     <Card.Footer>
@@ -103,11 +105,12 @@ class NewRequest extends Component {
     </Card.Footer>
   </Card>
   <Card>
-    <Card.Img variant="top" src={newimage2} />
+    <Card.Img variant="top" src={newimage4} />
     <Card.Body>
-      <Card.Title>Step 3</Card.Title>
+      <Card.Title><h1>Step 3</h1></Card.Title>
       <Card.Text>
-        Send the request for a volunteer to accept
+      When a volunteer arrives to pickup your request, please ask to take the QR code given to the volunteer. This will authenticate that the correct volunteer has shown up.
+      Congratulations, you have just reduced waste while helping those in need!
       </Card.Text>
     </Card.Body>
     <Card.Footer>
